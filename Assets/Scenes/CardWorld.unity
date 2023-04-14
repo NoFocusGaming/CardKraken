@@ -662,6 +662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 1211953548}
   cameraMoveSpeed: 100
-  cameraTurnRate: 60
+  cameraTurnRate: 100
   currentYawEulerAngles: {x: 0, y: 0, z: 0}
   targetYawEulerAngles: {x: 0, y: 0, z: 0}
