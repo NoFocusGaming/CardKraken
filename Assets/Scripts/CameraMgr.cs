@@ -29,6 +29,17 @@ public class CameraMgr : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.D))
                 StartCoroutine(turn(Vector3.up));
         }
+
+        //very basic camera movement forwards
+        if(Input.GetKeyUp(KeyCode.W))
+            cameraObj.transform.Translate(Vector3.forward);
+
+    }
+
+    void FixedUpdate()
+    {
+        if (Physics.Raycast (cameraObj.transform.position, cameraObj.transform.TransformDirection(Vector3.forward), 2))
+            Debug.Log("There is something in front of the object!");
     }
 
     IEnumerator turn(Vector3 direction)
