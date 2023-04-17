@@ -12,7 +12,7 @@ public class CameraMgr : MonoBehaviour
 
     public GameObject cameraObj;
 
-    public float cameraMoveSpeed = 100;
+    public float cameraMoveSpeed = 2;
     public float cameraTurnRate = 100;
 
     public Vector3 currentYawEulerAngles = Vector3.zero;
@@ -32,7 +32,7 @@ public class CameraMgr : MonoBehaviour
 
         //very basic camera movement forwards
         if(Input.GetKeyUp(KeyCode.W))
-            cameraObj.transform.Translate(Vector3.forward);
+            cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
 
     }
 
