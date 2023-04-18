@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardMgr3D : CardMgr
+//CompanionMgr is a class to control the visuals and AI of companion
+public class CompanionMgr : MonoBehaviour
 {
-    public static CardMgr3D inst;
+    public static CompanionMgr inst;
     private void Awake(){
         inst = this;
     }
+
+    public CompanionCard companion;
 
     // Start is called before the first frame update
     void Start()

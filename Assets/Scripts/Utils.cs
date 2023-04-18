@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//static class with useful static functions for reference in other classes
 public static class Utils
 {
+    //ApproximatelyEqual returns true if a and b values are within EPISILON distance of each other
     public static float EPSILON = 1f;
     public static bool ApproximatelyEqual(float a, float b)
     {
         return Mathf.Abs(a-b) < EPSILON;
     }
 
+    //FixAngle returns an adjusted angle for values of a approximatelyEqual to 0, 90, 180, etc. degrees
     public static float FixAngle(float a)
     {
         if(ApproximatelyEqual(a, 0))
@@ -27,6 +30,7 @@ public static class Utils
         return a;
     }
 
+    //Degrees360 adjusts the given angleDegrees to a value within 0 and 360
     public static float Degrees360(float angleDegrees)
     {
         if(angleDegrees >= 360)

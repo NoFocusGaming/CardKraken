@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardMgr2D : CardMgr
+/*
+CardMgr3D is a child of CardMgr class
+Designed to manage all cards in 3D (CardWorld) scene
+*/
+public class CardMgr3D : CardMgr
 {
-    public static CardMgr2D inst;
+    public static CardMgr3D inst;
     private void Awake(){
         inst = this;
     }
