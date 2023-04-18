@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 // CameraMgr controls movement of camera in 3Dworld
 public class CameraMgr : MonoBehaviour
 {
     public static CameraMgr inst;
+    
     private void Awake(){
         inst = this;
     }
@@ -41,7 +41,9 @@ public class CameraMgr : MonoBehaviour
     {
         //detection of card infront of objects
         if (Physics.Raycast (cameraObj.transform.position, cameraObj.transform.TransformDirection(Vector3.forward), 2))
+        {
             Debug.Log("There is something in front of the object!");
+        }
     }
 
     //coroutine to turn the camera 90 degrees at speed proportional to cameraTurnRate

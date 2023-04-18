@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //CompanionMgr is a class to control the visuals and AI of companion
 public class CompanionMgr : MonoBehaviour
@@ -11,6 +12,7 @@ public class CompanionMgr : MonoBehaviour
     }
 
     public CompanionCard companion;
+    public TextMeshProUGUI dialogue;
 
     // Start is called before the first frame update
     void Start()

@@ -8,6 +8,10 @@ public class CardMgr : MonoBehaviour
     //allCards will contain a list of all available cards in the given scene
     public List<Card> allCards;
 
+    private int damage;
+    private int healthGain;
+    private int inventoryGain;
+
     // Start is called before the first frame update
     void Start()
     {
