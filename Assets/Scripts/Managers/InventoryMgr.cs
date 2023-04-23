@@ -11,6 +11,8 @@ public class InventoryMgr : MonoBehaviour
     }
 
     public List<Card> currInventory;
+    public GameObject cardView;
+    public int inventorySize = 4;
 
     // Start is called before the first frame update
     void Start()
@@ -22,5 +24,11 @@ public class InventoryMgr : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //sets the child of the current card displaying in the center of the UI to currCard
+    public void setCardView(GameObject currentCard)
+    {
+        currentCard.transform.SetParent(cardView.transform);
     }
 }

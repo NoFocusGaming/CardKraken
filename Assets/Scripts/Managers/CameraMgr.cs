@@ -1,28 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 // CameraMgr controls movement of camera in 3Dworld
 public class CameraMgr : MonoBehaviour
 {
     public static CameraMgr inst;
-    
+
     private void Awake(){
         inst = this;
     }
 
     public GameObject cameraObj;
-    public GameObject instructions;
-    public GameObject currCard;
-
     public float cameraMoveSpeed = 2;
     public float cameraTurnRate = 100;
 
     public Vector3 currentYawEulerAngles = Vector3.zero;
     public Vector3 targetYawEulerAngles = Vector3.zero;
     private bool turning = false;
-    private bool pressF = false;
 
     // Update is called once per frame
     void Update()
@@ -39,28 +34,6 @@ public class CameraMgr : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.W))
             cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
 
-        if(pressF && Input.GetKeyDown(KeyCode.F)){
-            currCard.SetActive(false);
-            SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
-        }
-
-    }
-
-    void FixedUpdate()
-    {
-        RaycastHit hit;
-
-        //detection of card infront of objects
-        if (Physics.Raycast (cameraObj.transform.position, cameraObj.transform.TransformDirection(Vector3.forward), out hit, 4))
-        {
-            Debug.Log("There is something in front of the object!");
-            pressF = true;            
-            currCard = hit.collider.gameObject;
-        }else{
-            pressF = false;
-        }
-
-        instructions.SetActive(pressF);
     }
 
     //coroutine to turn the camera 90 degrees at speed proportional to cameraTurnRate
