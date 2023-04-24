@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ControlMgr2D : MonoBehaviour
 {
     private ControlMgr3D controlMgr3D;
+    private CameraMgr cameraMgr;
     private InventoryMgr inventoryMgr;
     private CardMgr2D cardMgr2D;
 
@@ -13,9 +14,10 @@ public class ControlMgr2D : MonoBehaviour
     void Start()
     {
         controlMgr3D = ControlMgr3D.inst;
+        cameraMgr = CameraMgr.inst;
         inventoryMgr = InventoryMgr.inst;
         cardMgr2D = CardMgr2D.inst;
-        
+
         inventoryMgr.setCardView(controlMgr3D.cardMgr3D.currCard);
     }
 
