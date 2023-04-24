@@ -38,7 +38,7 @@ public class ControlMgr3D : MonoBehaviour
         RaycastHit hit;
 
         //detection of card infront of objects
-        if (Physics.Raycast (cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.forward), out hit, 4))
+        if (Physics.Raycast (cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.forward), out hit, 8))
         {
             Debug.Log("There is something in front of the object!");
             pressF = true;            

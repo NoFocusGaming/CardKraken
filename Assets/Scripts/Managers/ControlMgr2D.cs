@@ -9,18 +9,14 @@ public class ControlMgr2D : MonoBehaviour
     private InventoryMgr inventoryMgr;
     private CardMgr2D cardMgr2D;
 
-    public Sprite CATCOMP;
-
     // Start is called before the first frame update
     void Start()
     {
         controlMgr3D = ControlMgr3D.inst;
         inventoryMgr = InventoryMgr.inst;
         cardMgr2D = CardMgr2D.inst;
-
-        cardMgr2D.currCard = controlMgr3D.cardMgr3D.currCard;
-
-        inventoryMgr.cardView.GetComponent<UnityEngine.UI.Image>().sprite = CATCOMP;
+        
+        inventoryMgr.setCardView(controlMgr3D.cardMgr3D.currCard);
     }
 
     // Update is called once per frame

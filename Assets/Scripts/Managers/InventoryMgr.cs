@@ -14,6 +14,8 @@ public class InventoryMgr : MonoBehaviour
     public GameObject cardView;
     public int inventorySize = 4;
 
+    public Sprite CAT, STICK, TASTYSNACK, CAMPFIRE, ROCK, LEAF;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,12 @@ public class InventoryMgr : MonoBehaviour
     //sets the child of the current card displaying in the center of the UI to currCard
     public void setCardView(GameObject currentCard)
     {
-        currentCard.transform.SetParent(cardView.transform);
+        Debug.Log("inside setCardView");
+
+        if(currentCard.CompareTag("Cat"))
+        {
+            Debug.Log("inside cat comparetag");
+            cardView.GetComponent<UnityEngine.UI.Image>().sprite = CAT;
+        }
     }
 }
