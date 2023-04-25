@@ -15,6 +15,8 @@ public class CardMgr3D : MonoBehaviour
 
     public List<Card> allCards;
     public GameObject currCard;  
+    public GameObject tastySnack;
+    public GameObject leaf, rock;
 
     // Start is called before the first frame update
     void Start()

@@ -24,21 +24,23 @@ public class CardView : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            GraphicRaycaster graphicsRaycaster = this.GetComponent<GraphicRaycaster>();
+            if(inventoryMgr.companionCard){
+                GraphicRaycaster graphicsRaycaster = this.GetComponent<GraphicRaycaster>();
 
-            PointerEventData ped = new PointerEventData(null);
-            ped.position = Input.mousePosition;
+                PointerEventData ped = new PointerEventData(null);
+                ped.position = Input.mousePosition;
 
-            List<RaycastResult> results = new List<RaycastResult>();
+                List<RaycastResult> results = new List<RaycastResult>();
 
-            graphicsRaycaster.Raycast(ped, results);
+                graphicsRaycaster.Raycast(ped, results);
 
-            foreach (RaycastResult result in results)
-            {
-                if(result.gameObject.CompareTag("CardView")){
-                    selectedCard = result.gameObject;
-                    mouseSelect = true;
-                    offset = selectedCard.transform.position - Input.mousePosition;
+                foreach (RaycastResult result in results)
+                {
+                    if(result.gameObject.CompareTag("CardView")){
+                        selectedCard = result.gameObject;
+                        mouseSelect = true;
+                        offset = selectedCard.transform.position - Input.mousePosition;
+                    }
                 }
             }
         }
@@ -56,7 +58,7 @@ public class CardView : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if(mouseSelect)
+        if(mouseSelect && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.companion.GetComponent<RectTransform>()))
             inventoryMgr.setCompanionSprite();
     }
 }

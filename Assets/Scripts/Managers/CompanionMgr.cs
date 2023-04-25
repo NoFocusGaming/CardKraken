@@ -12,7 +12,7 @@ public class CompanionMgr : MonoBehaviour
     }
 
     public GameObject companion;
-    public TextMeshProUGUI dialogue;
+    public List<GameObject> dialogue;
 
     // Start is called before the first frame update
     void Start()

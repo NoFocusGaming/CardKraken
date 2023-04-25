@@ -666,10 +666,10 @@ RectTransform:
   m_Father: {fileID: 1756955922}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &492331661
 GameObject:
@@ -1404,10 +1404,12 @@ MonoBehaviour:
   CAMPFIRE: {fileID: 21300000, guid: f26220c14525d134c89f340b58dc79bd, type: 3}
   ROCK: {fileID: 21300000, guid: 6364a17de8e598444b3d43541f0c250c, type: 3}
   LEAF: {fileID: 21300000, guid: a9014c49f9c51124ba7c68180ed4dbc0, type: 3}
+  BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   currSprite: {fileID: 0}
   dragAndDropInstructs: {fileID: 936099650}
   itemCard: 0
   companionCard: 0
+  eventCard: 0
 --- !u!1 &1082561705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2173,6 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardUsed: 0
+  completeEvent: 0
 --- !u!1 &1708895500
 GameObject:
   m_ObjectHideFlags: 0
@@ -2648,7 +2651,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -497.5, y: 205}
+  m_AnchoredPosition: {x: 10, y: -10}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1913301387
@@ -2735,7 +2738,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 25.08789, w: 13.9609375}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
