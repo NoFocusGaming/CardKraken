@@ -6,22 +6,24 @@ using UnityEngine.EventSystems;
 
 public class CardView : MonoBehaviour
 {
+    private InventoryMgr2D inventoryMgr;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventoryMgr = InventoryMgr2D.inst;
     }
 
     public GameObject selectedCard;
     public bool mouseSelect;
+
+    private Vector3 offset;
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("input mouse down button");
-
             GraphicRaycaster graphicsRaycaster = this.GetComponent<GraphicRaycaster>();
 
             PointerEventData ped = new PointerEventData(null);
@@ -33,14 +35,17 @@ public class CardView : MonoBehaviour
 
             foreach (RaycastResult result in results)
             {
-                Debug.Log("hit objects on screen???");
-
                 if(result.gameObject.CompareTag("CardView")){
-                    Debug.Log("cardview tag");
                     selectedCard = result.gameObject;
                     mouseSelect = true;
+                    offset = selectedCard.transform.position - Input.mousePosition;
                 }
             }
+        }
+
+        if(mouseSelect)
+        {
+            selectedCard.transform.position = Input.mousePosition + offset;
         }
 
         if(mouseSelect && Input.GetMouseButtonUp(0))
@@ -48,7 +53,10 @@ public class CardView : MonoBehaviour
             selectedCard = null;
             mouseSelect = false;
         }
+    }
 
-        
+    void FixedUpdate(){
+        if(mouseSelect)
+            inventoryMgr.setCompanionSprite();
     }
 }

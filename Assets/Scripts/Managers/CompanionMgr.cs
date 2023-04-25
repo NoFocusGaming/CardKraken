@@ -11,7 +11,7 @@ public class CompanionMgr : MonoBehaviour
         inst = this;
     }
 
-    public CompanionCard companion;
+    public GameObject companion;
     public TextMeshProUGUI dialogue;
 
     // Start is called before the first frame update
@@ -24,5 +24,9 @@ public class CompanionMgr : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void setCompanion(Sprite currSprite){
+        companion.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
     }
 }

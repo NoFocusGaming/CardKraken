@@ -4153,7 +4153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490216477341a944db6c30f6fd58940c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  companion: {fileID: 0}
+  companion: {fileID: 1239673799}
   dialogue: {fileID: 0}
 --- !u!1001 &566301580
 PrefabInstance:
@@ -9794,7 +9794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1239673800
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9835,7 +9835,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 70b23828dd0374b4eb12a2e788aa4294, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b2b3e925157f5f4cb178c952e02d8f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13992,6 +13992,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1820044823}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1838372554
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838372555}
+  - component: {fileID: 1838372556}
+  m_Layer: 0
+  m_Name: InventoryMgr3D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838372555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838372554}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2031805593}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838372556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838372554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79125a5d762f7044999141c2c886afd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currInventory: []
+  currInvSprites: []
 --- !u!1 &1842147940
 GameObject:
   m_ObjectHideFlags: 0
@@ -15390,6 +15436,7 @@ Transform:
   - {fileID: 58811363}
   - {fileID: 562747723}
   - {fileID: 2141895033}
+  - {fileID: 1838372555}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
