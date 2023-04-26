@@ -22,18 +22,21 @@ public class CameraMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //rotating 90 degrees at key press
-        if(!turning){
-            if(Input.GetKeyUp(KeyCode.A))
-                StartCoroutine(turn(Vector3.down));
-            if(Input.GetKeyUp(KeyCode.D))
-                StartCoroutine(turn(Vector3.up));
+        if (!PauseMenu.isPaused)
+        {
+            //rotating 90 degrees at key press
+            if (!turning)
+            {
+                if (Input.GetKeyUp(KeyCode.A))
+                    StartCoroutine(turn(Vector3.down));
+                if (Input.GetKeyUp(KeyCode.D))
+                    StartCoroutine(turn(Vector3.up));
+            }
+
+            //very basic camera movement forwards
+            if (Input.GetKeyUp(KeyCode.W))
+                cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
         }
-
-        //very basic camera movement forwards
-        if(Input.GetKeyUp(KeyCode.W))
-            cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
-
     }
 
     //coroutine to turn the camera 90 degrees at speed proportional to cameraTurnRate
