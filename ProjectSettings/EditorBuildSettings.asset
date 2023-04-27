@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 305ce51e812a4fa42a09d2795130da57
   - enabled: 1
-    path: Assets/Scenes/CardWorld.unity
+    path: Assets/Scenes/TutorialCardWorld.unity
     guid: 083422838588061428c99c1c1a1a5a32
   - enabled: 1
     path: Assets/Scenes/GameBoard.unity
