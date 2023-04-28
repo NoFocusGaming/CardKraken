@@ -31,6 +31,18 @@ public class ControlMgr3D : MonoBehaviour
             cardMgr3D.currCard.SetActive(false);
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
         }
+
+        //revealing inventory at any time with 'I' key press
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
+        }
+
+        //closing inventory with 'Q'
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.UnloadSceneAsync("GameBoard");
+        }
     }
 
     void FixedUpdate()
