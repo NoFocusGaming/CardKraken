@@ -22,6 +22,8 @@ public class InventoryMgr2D : MonoBehaviour
 
     public GameObject dragAndDropInstructs;
 
+    public GameObject GBC;
+
     public bool itemCard = false, companionCard = false, eventCard = false;
 
     // Start is called before the first frame update
@@ -45,6 +47,16 @@ public class InventoryMgr2D : MonoBehaviour
             dragAndDropInstructs.SetActive(true);
         }else{
             dragAndDropInstructs.SetActive(false);
+        }
+
+        if ((Input.GetKeyDown(KeyCode.F)))
+        {
+            GBC.SetActive(true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GBC.SetActive(false);
         }
     }
 

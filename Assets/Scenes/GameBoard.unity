@@ -2313,6 +2313,7 @@ MonoBehaviour:
   BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   currSprite: {fileID: 0}
   dragAndDropInstructs: {fileID: 936099650}
+  GBC: {fileID: 1756955918}
   itemCard: 0
   companionCard: 0
   eventCard: 0
@@ -3921,7 +3922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1756955919
 MonoBehaviour:
   m_ObjectHideFlags: 0
