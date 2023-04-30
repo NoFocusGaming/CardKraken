@@ -14,8 +14,13 @@ public class InventoryMgr2D : MonoBehaviour
     private InventoryMgr3D inventoryMgr3D;
     private CompanionMgr companionMgr;
 
-    public List<GameObject> inventoryPanels;
-    public int inventorySize = 4;
+    public List<GameObject> inventoryPanels4;
+    public List<GameObject> inventoryPanels5;
+    public List<GameObject> currPanel;
+    public int currInventoryIndex;
+
+    public List<GameObject> invPanelsParentObjects;
+
 
     public Sprite CAT, STICK, TASTYSNACK, CAMPFIRE, ROCK, LEAF, BLANK;
     public Sprite currSprite;
@@ -24,7 +29,7 @@ public class InventoryMgr2D : MonoBehaviour
 
     public GameObject GBC;
 
-    public bool itemCard = false, companionCard = false, eventCard = false;
+    public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +37,7 @@ public class InventoryMgr2D : MonoBehaviour
         inventoryMgr3D = InventoryMgr3D.inst;
         companionMgr = CompanionMgr.inst;
 
-        int index = 0;
-        foreach (Sprite s in inventoryMgr3D.currInvSprites)
-        {
-            inventoryPanels[index].GetComponent<UnityEngine.UI.Image>().sprite = s;
-            index++;
-        }
+        setInventory();
     }
 
     // Update is called once per frame
@@ -48,7 +48,7 @@ public class InventoryMgr2D : MonoBehaviour
         }else{
             dragAndDropInstructs.SetActive(false);
         }
-
+/*
         if ((Input.GetKeyDown(KeyCode.F)))
         {
             GBC.SetActive(true);
@@ -57,7 +57,7 @@ public class InventoryMgr2D : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             GBC.SetActive(false);
-        }
+        }*/
     }
 
     //sets the child of the current card displaying in the center of the UI to currCard
@@ -66,6 +66,7 @@ public class InventoryMgr2D : MonoBehaviour
         itemCard = false;
         companionCard = false;
         eventCard = false;
+        effectCard = false;
 
         if(currentCard.CompareTag("Cat"))
         {
@@ -78,6 +79,7 @@ public class InventoryMgr2D : MonoBehaviour
         }else if(currentCard.CompareTag("TastySnack"))
         {
             currSprite = TASTYSNACK;
+            effectCard = true;
         }else if(currentCard.CompareTag("Campfire"))
         {
             currSprite = CAMPFIRE; 
@@ -95,12 +97,33 @@ public class InventoryMgr2D : MonoBehaviour
         cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
     }
 
+    public void setInventory()
+    {
+        currInventoryIndex = inventoryMgr3D.maxCards - 4;
+        foreach(GameObject panelObject in invPanelsParentObjects)
+            panelObject.SetActive(false);
+        invPanelsParentObjects[currInventoryIndex].SetActive(true);
+
+        if(inventoryMgr3D.maxCards == 4)
+            currPanel = inventoryPanels4;
+        else if(inventoryMgr3D.maxCards == 5)
+            currPanel = inventoryPanels5;
+
+        //on gameboard scene load - load sprites of all cards in curr inventory
+        int index = 0;
+        foreach (Sprite s in inventoryMgr3D.currInvSprites)
+        {
+            currPanel[index].GetComponent<UnityEngine.UI.Image>().sprite = s;
+            index++;
+        }
+    }
+
     public void addCardToInv(Card currCard)
     {
         inventoryMgr3D.currInventory.Add(currCard);
         inventoryMgr3D.currInvSprites.Add(currSprite);
         cardView.SetActive(false);
-        inventoryPanels[(inventoryMgr3D.currInventory.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
+        currPanel[(inventoryMgr3D.currInventory.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
 
         if(currCard.card.CompareTag("Rock")){
             CardMgr3D.inst.leaf.SetActive(false);
@@ -124,7 +147,7 @@ public class InventoryMgr2D : MonoBehaviour
                 cardView.SetActive(false);
                 inventoryMgr3D.currInventory.RemoveAt(index-1);
                 inventoryMgr3D.currInvSprites.RemoveAt(index-1);
-                inventoryPanels[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
+                currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
                 return true;
             }
         }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4197,6 +4197,8 @@ MonoBehaviour:
   companion: {fileID: 1239673799}
   dialogue:
   - {fileID: 697126842}
+  - {fileID: 2128991223}
+  - {fileID: 979663978}
 --- !u!1001 &566301580
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5730,6 +5732,53 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 759456462}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &796168608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 796168609}
+  - component: {fileID: 796168610}
+  m_Layer: 0
+  m_Name: InventoryMgr3D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &796168609
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796168608}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2031805593}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &796168610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796168608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79125a5d762f7044999141c2c886afd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currInventory: []
+  maxCards: 4
+  currInvSprites: []
 --- !u!1 &798515830
 GameObject:
   m_ObjectHideFlags: 0
@@ -8252,7 +8301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -20}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &979663980
@@ -8278,7 +8327,7 @@ MonoBehaviour:
   m_text: 'You got an effect for completing that event! Event cards are green.
 
     Press
-    f to pick it up and then f again to use it. '
+    f to use it. '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8684383cf74768541be390e48477f7e6, type: 2}
   m_sharedMaterial: {fileID: 6668921611353637352, guid: 8684383cf74768541be390e48477f7e6,
@@ -15770,52 +15819,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1820044823}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1838372554
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1838372555}
-  - component: {fileID: 1838372556}
-  m_Layer: 0
-  m_Name: InventoryMgr3D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1838372555
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838372554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2031805593}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1838372556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838372554}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79125a5d762f7044999141c2c886afd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currInventory: []
-  currInvSprites: []
 --- !u!1 &1842147940
 GameObject:
   m_ObjectHideFlags: 0
@@ -17344,8 +17347,8 @@ Transform:
   - {fileID: 58811363}
   - {fileID: 562747723}
   - {fileID: 2141895033}
-  - {fileID: 1838372555}
   - {fileID: 1394954645}
+  - {fileID: 796168609}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18809,6 +18812,7 @@ MonoBehaviour:
   cardMgr3D: {fileID: 0}
   instructions: {fileID: 481175227}
   pressF: 0
+  cardPresent: 0
 --- !u!1001 &706998149706229076
 PrefabInstance:
   m_ObjectHideFlags: 0

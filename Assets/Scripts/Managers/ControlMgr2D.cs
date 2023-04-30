@@ -29,11 +29,22 @@ public class ControlMgr2D : MonoBehaviour
         cardUsed = false;
         completeEvent = false;
 
-        inventoryMgr2D.setCardView(controlMgr3D.cardMgr3D.currCard);
-        inventoryMgr2D.cardView.SetActive(true);
+        //on gameboard load - sets the card currently in view to match the one in gameboard
+        if(controlMgr3D.cardPresent){
+            inventoryMgr2D.setCardView(controlMgr3D.cardMgr3D.currCard);
+            inventoryMgr2D.cardView.SetActive(true);
+        }
 
         if(inventoryMgr2D.itemCard && InventoryMgr3D.inst.currInventory.Count == 0){
-            CompanionMgr.inst.dialogue[0].SetActive(true);
+            CompanionMgr.inst.setDialogue(0);
+        }
+
+        if(inventoryMgr2D.eventCard){
+            CompanionMgr.inst.setDialogue(1);
+        }
+
+        if(inventoryMgr2D.effectCard){
+            CompanionMgr.inst.setDialogue(2);
         }
     }
 
@@ -42,19 +53,24 @@ public class ControlMgr2D : MonoBehaviour
     {
         //closing GameBoard scene on press of key 'Q'
         if(Input.GetKeyDown(KeyCode.Q)){
-            if(!cardUsed && !completeEvent)
-                controlMgr3D.cardMgr3D.currCard.SetActive(true);
+            if(controlMgr3D.cardPresent){
+                if(!cardUsed){
+                    controlMgr3D.cardMgr3D.currCard.SetActive(true);
+                }else{
+                    controlMgr3D.cardPresent = false;
+                }
 
-            if(completeEvent)
-                controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
+                if(completeEvent)
+                    controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
+            }
 
+            controlMgr3D.inventoryOpen = false;
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
         if(inventoryMgr2D.itemCard && Input.GetKeyDown(KeyCode.E)){
             inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
             cardUsed = true;
-            CompanionMgr.inst.dialogue[0].SetActive(false);
         }
 
         if(inventoryMgr2D.eventCard){
@@ -65,6 +81,18 @@ public class ControlMgr2D : MonoBehaviour
             }else if(Input.GetKeyDown(KeyCode.Alpha3)){
                 completeEvent = inventoryMgr2D.completeEventCard(3);
             }
+            cardUsed = completeEvent;
+        }
+
+        if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
+            InventoryMgr3D.inst.maxCards += 1;
+            inventoryMgr2D.cardView.SetActive(false);
+            inventoryMgr2D.setInventory();
+            cardUsed = true;
+        }
+
+        if(cardUsed){
+            CompanionMgr.inst.removeDialogue();
         }
     }
 }

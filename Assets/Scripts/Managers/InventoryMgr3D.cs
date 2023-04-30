@@ -11,6 +11,8 @@ public class InventoryMgr3D : MonoBehaviour
 
     public List<Card> currInventory;
 
+    public int maxCards;
+
     public List<Sprite> currInvSprites;
 
     // Start is called before the first frame update

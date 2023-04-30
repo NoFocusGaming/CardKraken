@@ -22,7 +22,7 @@ public class CameraMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!PauseMenu.isPaused)
+        if (!ControlMgr3D.inst.inventoryOpen && !PauseMenu.isPaused)
         {
             //rotating 90 degrees at key press
             if (!turning)

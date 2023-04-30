@@ -23,10 +23,18 @@ public class CompanionMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void setCompanion(Sprite currSprite){
         companion.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
+    }
+
+    public void setDialogue(int index){
+        dialogue[index].SetActive(true);
+    }
+
+    public void removeDialogue(){
+        foreach(GameObject option in dialogue)
+            option.SetActive(false);
     }
 }
