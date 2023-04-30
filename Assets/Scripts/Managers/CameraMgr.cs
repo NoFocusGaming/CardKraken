@@ -39,6 +39,8 @@ public class CameraMgr : MonoBehaviour
         }
     }
 
+    /*
+    //commented out the old one!
     //coroutine to turn the camera 90 degrees at speed proportional to cameraTurnRate
     //to turn right use: Vector3.up; to turn left use: Vector3.down as 'direction'
     IEnumerator turn(Vector3 direction)
@@ -57,6 +59,32 @@ public class CameraMgr : MonoBehaviour
         currentYawEulerAngles.y = Utils.FixAngle(currentYawEulerAngles.y);
         currentYawEulerAngles.y = Utils.Degrees360(currentYawEulerAngles.y);
         cameraObj.transform.localEulerAngles = currentYawEulerAngles;
+
+        turning = false;
+    }
+    */
+    //new code to fix rotation bug
+    IEnumerator turn(Vector3 direction)
+    {
+        turning = true;
+        currentYawEulerAngles = cameraObj.transform.eulerAngles;
+        targetYawEulerAngles = currentYawEulerAngles + direction * 90;
+        targetYawEulerAngles.y = Utils.FixAngle(targetYawEulerAngles.y);
+
+        float elapsed = 0;
+        float duration = Mathf.Abs(90 / cameraTurnRate);
+        while (elapsed < duration)
+        {
+            float rotationAmount = Time.deltaTime * cameraTurnRate;
+            cameraObj.transform.Rotate(direction * rotationAmount, Space.Self);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        currentYawEulerAngles = cameraObj.transform.eulerAngles;
+        currentYawEulerAngles.y = Utils.FixAngle(currentYawEulerAngles.y);
+        currentYawEulerAngles.y = Utils.Degrees360(currentYawEulerAngles.y);
+        cameraObj.transform.eulerAngles = currentYawEulerAngles;
 
         turning = false;
     }

@@ -13,26 +13,37 @@ public class MainMenuController : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex +1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    //add these once all levels are implemented
-    /*
+    public void loadTutorial()
+    {
+        SceneManager.LoadScene("TutorialCardWorld");
+    }
+
+    public void loadVillage()
+    {
+        SceneManager.LoadScene("VillageCardWorld");
+    }
+
     public void loadLevel1()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level1CardWorld");
     }
+
     public void loadLevel2()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Level2CardWorld");
     }
-    public void loadLevel3()
+
+    public void loadBoss()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("BossCardWorld");
     }
-    public void loadLevel4()
+
+    public void quit()
     {
-        SceneManager.LoadScene(5);
+        Application.Quit();
     }
-    */
+
 }

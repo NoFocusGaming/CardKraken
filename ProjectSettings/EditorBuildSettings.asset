@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameBoard.unity
     guid: 924866e53a083d046afbbfb892a0ff28
+  - enabled: 1
+    path: Assets/Scenes/VillageCardWorld.unity
+    guid: ad008413ff18be940abd6c8b09b39bba
+  - enabled: 1
+    path: Assets/Scenes/Level1CardWorld.unity
+    guid: 3417347d60bee5440a16b5c665bb4b31
+  - enabled: 1
+    path: Assets/Scenes/Level2CardWorld.unity
+    guid: 6876925bc1099394ebbbc482562e48ba
+  - enabled: 1
+    path: Assets/Scenes/BossCardWorld.unity
+    guid: 4159631911e2e094eaf84c0477cc4400
   m_configObjects: {}
