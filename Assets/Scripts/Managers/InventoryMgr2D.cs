@@ -27,8 +27,9 @@ public class InventoryMgr2D : MonoBehaviour
 
 
     public Sprite CAT, BLANK;
-    public Sprite STICK, ROCK, LEAF, COOKIE, SHIELD, CANDLE, ROPE, FEATHER, AXE, NEEDLE, ARROWHEAD, DAGGER, MATCHES;
-    public Sprite CAMPFIRE, SQUIRREL, SNAKE, TREEHOUSE, LAKE;
+    public Sprite STICK, ROCK, LEAF, COOKIE, SHIELD, CANDLE, ROPE, FEATHER, AXE, NEEDLE, ARROWHEAD, DAGGER, MATCHES, SWORD, SPEAR;
+    public Sprite CAMPFIRE, SQUIRREL, SNAKE, TREEHOUSE, LAKE, SWORDSTONE, CABIN, CABIN2, CLIFF, WELL, LUMP, PERFECTSTICK;
+    public Sprite ATTACK, SLAM, FLING, GRAB, TRIP, RUN;
     public Sprite TASTYSNACK, IMPROVEDTECH, VENOM, FUNGUS;
 
     public Sprite currSprite;
@@ -125,6 +126,14 @@ public class InventoryMgr2D : MonoBehaviour
         {
             currSprite = MATCHES;
             itemCard = true;   
+        }else if(currentCard.CompareTag("Sword"))
+        {
+            currSprite = SWORD;
+            itemCard = true;   
+        }else if(currentCard.CompareTag("Spear"))
+        {
+            currSprite = SPEAR;
+            itemCard = true;   
         }
 
         if(currentCard.CompareTag("Campfire"))
@@ -146,6 +155,34 @@ public class InventoryMgr2D : MonoBehaviour
         }else if(currentCard.CompareTag("Lake"))
         {
             currSprite = LAKE; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("SwordStone"))
+        {
+            currSprite = SWORDSTONE; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("Cabin"))
+        {
+            currSprite = CABIN; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("Cabin2"))
+        {
+            currSprite = CABIN2; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("Cliff"))
+        {
+            currSprite = CLIFF; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("Well"))
+        {
+            currSprite = WELL; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("Lump"))
+        {
+            currSprite = LUMP; 
+            eventCard = true;
+        }else if(currentCard.CompareTag("PerfectStick"))
+        {
+            currSprite = PERFECTSTICK; 
             eventCard = true;
         }
 
@@ -195,7 +232,6 @@ public class InventoryMgr2D : MonoBehaviour
         int index = 0;
         foreach (Sprite s in inventoryMgr3D.currInvSprites)
         {
-            Debug.Log("index: " + index);
             currPanel[index].GetComponent<UnityEngine.UI.Image>().sprite = s;
             index++;
         }

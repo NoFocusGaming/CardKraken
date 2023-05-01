@@ -2347,11 +2347,26 @@ MonoBehaviour:
   ARROWHEAD: {fileID: 21300000, guid: 14e57396625e17640a622eeb4947e2b6, type: 3}
   DAGGER: {fileID: 21300000, guid: 68f6c41fab6725c42a6c7b96faebda4d, type: 3}
   MATCHES: {fileID: 21300000, guid: 14e8671753e80e0468e15e810a9775bd, type: 3}
+  SWORD: {fileID: 21300000, guid: 77bde1e08cf02ef49a017f4f1b32780b, type: 3}
+  SPEAR: {fileID: 21300000, guid: cf0e7b425eb41e54eb5bf905d4d17bb8, type: 3}
   CAMPFIRE: {fileID: 21300000, guid: f26220c14525d134c89f340b58dc79bd, type: 3}
   SQUIRREL: {fileID: 21300000, guid: df4f20cec723b924c8635652f42c2b17, type: 3}
   SNAKE: {fileID: 21300000, guid: 58ccb3334119ddd468ed86f24bef1940, type: 3}
   TREEHOUSE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   LAKE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
+  SWORDSTONE: {fileID: 0}
+  CABIN: {fileID: 0}
+  CABIN2: {fileID: 0}
+  CLIFF: {fileID: 0}
+  WELL: {fileID: 0}
+  LUMP: {fileID: 0}
+  PERFECTSTICK: {fileID: 21300000, guid: 4dc34c91b97c48c4eb1c986de9c497c7, type: 3}
+  ATTACK: {fileID: 21300000, guid: d9a1dc7b55bc7274a95b6d788771ff9a, type: 3}
+  SLAM: {fileID: 21300000, guid: 761c077daeeb54a44af08ced6532a911, type: 3}
+  FLING: {fileID: 21300000, guid: f002dc936fe897c48bd832bec64a6c5e, type: 3}
+  GRAB: {fileID: 21300000, guid: 23aefaae7aaf55742a4bb1bcf8884863, type: 3}
+  TRIP: {fileID: 21300000, guid: b6c8b527efd29e140b7b8ff4d8f243d1, type: 3}
+  RUN: {fileID: 21300000, guid: eb6ee39294c2fb743852b2ef514f2255, type: 3}
   TASTYSNACK: {fileID: 21300000, guid: b01e41b13a4f91d4f9078b4e68aa95c6, type: 3}
   IMPROVEDTECH: {fileID: 21300000, guid: ff65c2a59b7790d40ae72362e3abcefd, type: 3}
   VENOM: {fileID: 21300000, guid: 808f1a1d794e911479c3477ebdd4f7e9, type: 3}
@@ -3628,6 +3643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardUsed: 0
   completeEvent: 0
+  completeEffect: 0
   eventFailed: 0
   snack: 0
   technique: 0
