@@ -16,7 +16,7 @@ public class ControlMgr2D : MonoBehaviour
     private CardMgr2D cardMgr2D;
 
     public bool cardUsed = false;
-    public bool completeEvent = false;
+    public bool completeEvent = false, completeEffect = false;
     public bool eventFailed = false;
 
     public bool snack = false, technique = false, fungus = false, venom = false;
@@ -125,6 +125,7 @@ public class ControlMgr2D : MonoBehaviour
                 controlMgr3D.cardMgr3D.fungus.card.SetActive(true);
 
             controlMgr3D.inventoryOpen = false;
+            controlMgr3D.cardPresent = false;
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
@@ -135,7 +136,8 @@ public class ControlMgr2D : MonoBehaviour
         }
 
         if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
-            inventoryMgr2D.completeEffectCard();
+            completeEffect = inventoryMgr2D.completeEffectCard();
+            cardUsed = completeEffect;
         }
 
         if(cardUsed){

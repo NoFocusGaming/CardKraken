@@ -195,6 +195,7 @@ public class InventoryMgr2D : MonoBehaviour
         int index = 0;
         foreach (Sprite s in inventoryMgr3D.currInvSprites)
         {
+            Debug.Log("index: " + index);
             currPanel[index].GetComponent<UnityEngine.UI.Image>().sprite = s;
             index++;
         }
@@ -286,19 +287,20 @@ public class InventoryMgr2D : MonoBehaviour
         return complete;
     }
 
-    public void completeEffectCard()
+    public bool completeEffectCard()
     {
         if(cardMgr3D.currCard.CompareTag("TastySnack")){
             inventoryMgr3D.maxCards += 1;
             cardView.SetActive(false);
             setInventory();
-            ControlMgr2D.inst.cardUsed = true;
 
             if(InventoryMgr3D.inst.currLevel == 1){
                 inventoryMgr3D.levelOneComplete = true;
                 ControlMgr3D.inst.levelComplete = true;
                 cardMgr3D.clearSticks();
             }
+            return true;
         }
+        return false;
     }
 }
