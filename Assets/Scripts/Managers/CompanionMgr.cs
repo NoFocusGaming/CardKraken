@@ -14,10 +14,15 @@ public class CompanionMgr : MonoBehaviour
     public GameObject companion;
     public List<GameObject> dialogue;
 
+    public InventoryMgr3D inventoryMgr;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        inventoryMgr = InventoryMgr3D.inst;
+
+        if(inventoryMgr.currLevel != 0)
+            setCompanion(inventoryMgr.currCompanion);
     }
 
     // Update is called once per frame
@@ -27,6 +32,7 @@ public class CompanionMgr : MonoBehaviour
 
     public void setCompanion(Sprite currSprite){
         companion.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
+        inventoryMgr.currCompanion = currSprite;
     }
 
     public void setDialogue(int index){

@@ -7,23 +7,26 @@ public class InventoryMgr3D : MonoBehaviour
     public static InventoryMgr3D inst;
     private void Awake(){
         inst = this;
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    public List<Card> currInventory;
+    public List<string> currInvTags;
 
     public int maxCards;
 
     public List<Sprite> currInvSprites;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<bool> currInvWeapon;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Sprite currCompanion;
+
+    public int currLevel; //0 = tutorial, 1 = level 1, 2 = level 2, 3 = boss level, 4 = village
+    public bool tutorialComplete = false, levelOneComplete = false, levelTwoComplete = false, bossComplete = false;
+
+    public void wipeInventory(){
+        currInvSprites.Clear();
+        currInvTags.Clear();
+        currInvWeapon.Clear();
     }
 }

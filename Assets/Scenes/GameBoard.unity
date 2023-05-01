@@ -1004,6 +1004,7 @@ RectTransform:
   m_Children:
   - {fileID: 1913301386}
   - {fileID: 936099651}
+  - {fileID: 2069836779}
   m_Father: {fileID: 1756955922}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1422,7 +1423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 693036432}
-  inInventory: 0
+  weapon: 0
 --- !u!1 &754274432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,7 +1998,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 876121322}
-  inInventory: 0
+  weapon: 0
 --- !u!1 &915447070
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,24 +2310,60 @@ MonoBehaviour:
   - {fileID: 807287130}
   - {fileID: 1789479448}
   - {fileID: 781312080}
+  inventoryPanels6:
+  - {fileID: 810601830}
+  - {fileID: 1253555922}
+  - {fileID: 119673338}
+  - {fileID: 1047806220}
+  - {fileID: 796702222}
+  - {fileID: 687574788}
+  inventoryPanels7:
+  - {fileID: 1464854592}
+  - {fileID: 979688528}
+  - {fileID: 1000403567}
+  - {fileID: 787527561}
+  - {fileID: 1599489895}
+  - {fileID: 1549431945}
+  - {fileID: 2074592013}
   currPanel: []
   currInventoryIndex: 0
   invPanelsParentObjects:
   - {fileID: 1304181424}
   - {fileID: 826835784}
+  - {fileID: 1495762056}
+  - {fileID: 1571705970}
   CAT: {fileID: 21300000, guid: 70b23828dd0374b4eb12a2e788aa4294, type: 3}
+  BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   STICK: {fileID: 21300000, guid: 427fc24ba12ed71478d3c80fb24bb6b9, type: 3}
-  TASTYSNACK: {fileID: 21300000, guid: b01e41b13a4f91d4f9078b4e68aa95c6, type: 3}
-  CAMPFIRE: {fileID: 21300000, guid: f26220c14525d134c89f340b58dc79bd, type: 3}
   ROCK: {fileID: 21300000, guid: 6364a17de8e598444b3d43541f0c250c, type: 3}
   LEAF: {fileID: 21300000, guid: a9014c49f9c51124ba7c68180ed4dbc0, type: 3}
-  BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
+  COOKIE: {fileID: 21300000, guid: e8c957616cc754444a694059c126d398, type: 3}
+  SHIELD: {fileID: 21300000, guid: 80162f178fe163f4f976a245d7adb910, type: 3}
+  CANDLE: {fileID: 21300000, guid: 378aeee51d04b6c4bb4f1333b221c691, type: 3}
+  ROPE: {fileID: 21300000, guid: 35cc7e6aa1dadf04ebd6f25742d0cfc5, type: 3}
+  FEATHER: {fileID: 21300000, guid: 9016fecffa39ec1459b3c3df6ee07017, type: 3}
+  AXE: {fileID: 21300000, guid: 2ef252c6b37c7854f874318eda756430, type: 3}
+  NEEDLE: {fileID: 21300000, guid: aba3ed7225dd6da4ba6ab8367f1e2dd7, type: 3}
+  ARROWHEAD: {fileID: 21300000, guid: 14e57396625e17640a622eeb4947e2b6, type: 3}
+  DAGGER: {fileID: 21300000, guid: 68f6c41fab6725c42a6c7b96faebda4d, type: 3}
+  MATCHES: {fileID: 21300000, guid: 14e8671753e80e0468e15e810a9775bd, type: 3}
+  CAMPFIRE: {fileID: 21300000, guid: f26220c14525d134c89f340b58dc79bd, type: 3}
+  SQUIRREL: {fileID: 21300000, guid: df4f20cec723b924c8635652f42c2b17, type: 3}
+  SNAKE: {fileID: 21300000, guid: 58ccb3334119ddd468ed86f24bef1940, type: 3}
+  TREEHOUSE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
+  LAKE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
+  TASTYSNACK: {fileID: 21300000, guid: b01e41b13a4f91d4f9078b4e68aa95c6, type: 3}
+  IMPROVEDTECH: {fileID: 21300000, guid: ff65c2a59b7790d40ae72362e3abcefd, type: 3}
+  VENOM: {fileID: 21300000, guid: 808f1a1d794e911479c3477ebdd4f7e9, type: 3}
+  FUNGUS: {fileID: 21300000, guid: 89866ac4c9e5ea84281252101c9bd402, type: 3}
   currSprite: {fileID: 0}
   dragAndDropInstructs: {fileID: 936099650}
-  GBC: {fileID: 1756955918}
+  qInstruct: {fileID: 1913301385}
+  rInstruct: {fileID: 2069836778}
   itemCard: 0
   companionCard: 0
   eventCard: 0
+  effectCard: 0
 --- !u!1 &1047806220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2517,7 +2554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1097202487}
-  inInventory: 0
+  weapon: 0
 --- !u!1 &1139047684
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,7 +2607,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1139047684}
-  inInventory: 0
+  weapon: 0
 --- !u!114 &1139047687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3310,7 +3347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1507947407}
-  inInventory: 0
+  weapon: 0
 --- !u!114 &1507947410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3591,7 +3628,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardUsed: 0
   completeEvent: 0
-  cardChoice: 0
+  eventFailed: 0
+  snack: 0
+  technique: 0
+  fungus: 0
+  venom: 0
+  axe: 0
+  matches: 0
 --- !u!1 &1742463800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4336,7 +4379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 1938709899}
-  inInventory: 0
+  weapon: 0
 --- !u!1 &2055608129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4412,6 +4455,142 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055608129}
+  m_CullTransparentMesh: 1
+--- !u!1 &2069836778
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069836779}
+  - component: {fileID: 2069836781}
+  - component: {fileID: 2069836780}
+  m_Layer: 5
+  m_Name: R
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &2069836779
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069836778}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 467565028}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -10}
+  m_SizeDelta: {x: 500, y: 50}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &2069836780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069836778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Press R to retreat to village
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8684383cf74768541be390e48477f7e6, type: 2}
+  m_sharedMaterial: {fileID: 6668921611353637352, guid: 8684383cf74768541be390e48477f7e6,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 25.08789, w: 13.9609375}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2069836781
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069836778}
   m_CullTransparentMesh: 1
 --- !u!1 &2074592013
 GameObject:

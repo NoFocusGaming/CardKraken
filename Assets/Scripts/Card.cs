@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventCard : Card
+//Card is a parent class for all card gameObjects
+public class Card : MonoBehaviour
 {
+    public GameObject card;
+
+    public bool weapon = false;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a07a3046f035244859708954a3ef9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 206549767}
 --- !u!4 &745431
 Transform:
   m_ObjectHideFlags: 0
@@ -7228,7 +7228,7 @@ GameObject:
   - component: {fileID: 213042171}
   m_Layer: 0
   m_Name: EasyLevelLoadingZone
-  m_TagString: Untagged
+  m_TagString: LoadZoneLvl1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20021,10 +20021,9 @@ Transform:
   m_Children:
   - {fileID: 1748856927}
   - {fileID: 1149327785}
-  - {fileID: 1165554034}
   - {fileID: 798479714}
-  - {fileID: 1561201888}
   - {fileID: 745431}
+  - {fileID: 913070299}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23940,8 +23939,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraMgr: {fileID: 1748856926}
   cardMgr3D: {fileID: 0}
+  inventoryMgr3D: {fileID: 0}
   instructions: {fileID: 840070205}
   pressF: 0
+  cardPresent: 0
+  inventoryOpen: 0
+  levelComplete: 0
 --- !u!1001 &798861286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28226,6 +28229,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 912815066}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &913070298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 913070299}
+  - component: {fileID: 913070300}
+  m_Layer: 0
+  m_Name: CompanionMgr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &913070299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913070298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 642999123}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &913070300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 913070298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 490216477341a944db6c30f6fd58940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  companion: {fileID: 148901896}
+  dialogue: []
 --- !u!1001 &914073424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34936,7 +34985,7 @@ GameObject:
   - component: {fileID: 1110482448}
   m_Layer: 0
   m_Name: HardLevelLoadingZone
-  m_TagString: Untagged
+  m_TagString: LoadZoneLvl2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37346,53 +37395,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1164884617}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1165554033
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1165554034}
-  - component: {fileID: 1165554035}
-  m_Layer: 0
-  m_Name: CompanionMgr
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1165554034
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165554033}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 642999123}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1165554035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1165554033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 490216477341a944db6c30f6fd58940c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  companion: {fileID: 148901896}
-  dialogue:
-  - {fileID: 1423247458}
 --- !u!1001 &1166045034
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40027,7 +40029,7 @@ GameObject:
   - component: {fileID: 1247323935}
   m_Layer: 0
   m_Name: BossLoadingZone
-  m_TagString: Untagged
+  m_TagString: LoadZoneBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51125,52 +51127,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1559213456}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1561201887
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1561201888}
-  - component: {fileID: 1561201889}
-  m_Layer: 0
-  m_Name: InventoryMgr3D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1561201888
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561201887}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 642999123}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1561201889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1561201887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79125a5d762f7044999141c2c886afd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currInventory: []
-  currInvSprites: []
 --- !u!1 &1564728505
 GameObject:
   m_ObjectHideFlags: 0
@@ -57684,10 +57640,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 1028739734}
-  cameraMoveSpeed: 2
+  cameraMoveSpeed: 4
   cameraTurnRate: 100
   currentYawEulerAngles: {x: 0, y: 0, z: 0}
   targetYawEulerAngles: {x: 0, y: 0, z: 0}
+  obstacle: 0
 --- !u!4 &1748856927
 Transform:
   m_ObjectHideFlags: 0

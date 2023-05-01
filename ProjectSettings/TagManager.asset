@@ -3,7 +3,18 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - TastySnack
+  - Leaf
+  - Stick
+  - Campfire
+  - Cat
+  - Rock
+  - Wall
+  - LoadZoneLvl1
+  - LoadZoneLvl2
+  - LoadZoneBoss
+  - LoadZoneVillage
   layers:
   - Default
   - TransparentFX

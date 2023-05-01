@@ -17,7 +17,10 @@ public class ControlMgr2D : MonoBehaviour
 
     public bool cardUsed = false;
     public bool completeEvent = false;
-    public bool cardChoice = false;
+    public bool eventFailed = false;
+
+    public bool snack = false, technique = false, fungus = false, venom = false;
+    public bool axe = false, matches = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,12 @@ public class ControlMgr2D : MonoBehaviour
         cardMgr2D = CardMgr2D.inst;
         cardUsed = false;
         completeEvent = false;
+        snack = false;
+        technique = false;
+        fungus = false;
+        venom = false;
+        axe = false;
+        matches = false;
 
         //on gameboard load - sets the card currently in view to match the one in gameboard
         if(controlMgr3D.cardPresent){
@@ -35,16 +44,18 @@ public class ControlMgr2D : MonoBehaviour
             inventoryMgr2D.cardView.SetActive(true);
         }
 
-        if(inventoryMgr2D.itemCard && InventoryMgr3D.inst.currInventory.Count == 0){
-            CompanionMgr.inst.setDialogue(0);
-        }
+        if(InventoryMgr3D.inst.currLevel == 0){
+            if(inventoryMgr2D.itemCard && InventoryMgr3D.inst.currInvTags.Count == 0){
+                CompanionMgr.inst.setDialogue(0);
+            }
 
-        if(inventoryMgr2D.eventCard){
-            CompanionMgr.inst.setDialogue(1);
-        }
+            if(inventoryMgr2D.eventCard){
+                CompanionMgr.inst.setDialogue(1);
+            }
 
-        if(inventoryMgr2D.effectCard){
-            CompanionMgr.inst.setDialogue(2);
+            if(inventoryMgr2D.effectCard){
+                CompanionMgr.inst.setDialogue(2);
+            }
         }
     }
 
@@ -52,25 +63,29 @@ public class ControlMgr2D : MonoBehaviour
     void Update()
     {
         //closing GameBoard scene on press of key 'Q'
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(!inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.Q)){
             if(controlMgr3D.cardPresent){
                 if(!cardUsed){
                     controlMgr3D.cardMgr3D.currCard.SetActive(true);
                 }else{
                     controlMgr3D.cardPresent = false;
                 }
-
-                if(completeEvent)
-                    controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
             }
 
             controlMgr3D.inventoryOpen = false;
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
-        if(inventoryMgr2D.itemCard && Input.GetKeyDown(KeyCode.E)){
-            inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
-            cardUsed = true;
+        if((InventoryMgr3D.inst.currLevel != 0) && inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.R)){
+            InventoryMgr3D.inst.currLevel = 4;
+            SceneManager.LoadScene("VillageCardWorld");
+        }
+
+        if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.E)){
+            if(!controlMgr3D.cardMgr3D.currCard.CompareTag("TastySnack")){
+                inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
+                cardUsed = true;
+            }
         }
 
         if(inventoryMgr2D.eventCard){
@@ -80,15 +95,47 @@ public class ControlMgr2D : MonoBehaviour
                 completeEvent = inventoryMgr2D.completeEventCard(2);
             }else if(Input.GetKeyDown(KeyCode.Alpha3)){
                 completeEvent = inventoryMgr2D.completeEventCard(3);
+            }else if(Input.GetKeyDown(KeyCode.Alpha4)){
+                completeEvent = inventoryMgr2D.completeEventCard(4);
             }
             cardUsed = completeEvent;
         }
 
+        if(completeEvent){
+            if(snack){
+                controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
+                
+                if(InventoryMgr3D.inst.currLevel == 1)
+                    controlMgr3D.cardMgr3D.tastySnack1.SetActive(true);
+            }
+
+            if(technique)
+                controlMgr3D.cardMgr3D.improvedTechnique.card.SetActive(true);
+
+            if(venom)
+                controlMgr3D.cardMgr3D.venom.card.SetActive(true);
+
+            if(axe)
+                controlMgr3D.cardMgr3D.axe.card.SetActive(true);
+
+            if(matches)
+                controlMgr3D.cardMgr3D.matches.card.SetActive(true);
+
+            if(fungus)
+                controlMgr3D.cardMgr3D.fungus.card.SetActive(true);
+
+            controlMgr3D.inventoryOpen = false;
+            SceneManager.UnloadSceneAsync("GameBoard");
+        }
+
+        if(eventFailed){
+            InventoryMgr3D.inst.wipeInventory();
+            InventoryMgr3D.inst.currLevel = 4;
+            SceneManager.LoadScene("VillageCardWorld");
+        }
+
         if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
-            InventoryMgr3D.inst.maxCards += 1;
-            inventoryMgr2D.cardView.SetActive(false);
-            inventoryMgr2D.setInventory();
-            cardUsed = true;
+            inventoryMgr2D.completeEffectCard();
         }
 
         if(cardUsed){
