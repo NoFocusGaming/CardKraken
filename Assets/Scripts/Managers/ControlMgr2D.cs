@@ -20,7 +20,7 @@ public class ControlMgr2D : MonoBehaviour
     public bool eventFailed = false;
 
     public bool snack = false, technique = false, fungus = false, venom = false;
-    public bool axe = false, matches = false;
+    public bool axe = false, matches = false, spear = false, sword = false;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +36,8 @@ public class ControlMgr2D : MonoBehaviour
         fungus = false;
         venom = false;
         axe = false;
+        spear = false;
+        sword = false;
         matches = false;
 
         //on gameboard load - sets the card currently in view to match the one in gameboard
@@ -115,8 +117,15 @@ public class ControlMgr2D : MonoBehaviour
             if(venom)
                 controlMgr3D.cardMgr3D.venom.card.SetActive(true);
 
-            if(axe)
+            if(axe){
+                controlMgr3D.cardMgr3D.axe.transform.SetParent(controlMgr3D.cardMgr3D.currCard.transform.parent.gameObject.transform, false);
                 controlMgr3D.cardMgr3D.axe.card.SetActive(true);
+            }
+
+            if(spear){
+                controlMgr3D.cardMgr3D.spear.transform.SetParent(controlMgr3D.cardMgr3D.currCard.transform.parent.gameObject.transform, false);
+                controlMgr3D.cardMgr3D.spear.card.SetActive(true);
+            }
 
             if(matches)
                 controlMgr3D.cardMgr3D.matches.card.SetActive(true);

@@ -156,7 +156,7 @@ public class InventoryMgr2D : MonoBehaviour
         {
             currSprite = LAKE; 
             eventCard = true;
-        }else if(currentCard.CompareTag("SwordStone"))
+        }else if(currentCard.CompareTag("Swordstone"))
         {
             currSprite = SWORDSTONE; 
             eventCard = true;
@@ -202,6 +202,26 @@ public class InventoryMgr2D : MonoBehaviour
         {
             currSprite = VENOM;
             effectCard = true;
+        }
+
+        if(currentCard.CompareTag("Attack")){
+            currSprite = ATTACK;
+            eventCard = true;
+        }else if(currentCard.CompareTag("Slam")){
+            currSprite = SLAM;
+            eventCard = true;
+        }else if(currentCard.CompareTag("Fling")){
+            currSprite = FLING;
+            eventCard = true;
+        }else if(currentCard.CompareTag("Grab")){
+            currSprite = GRAB;
+            eventCard = true;
+        }else if(currentCard.CompareTag("Trip")){
+            currSprite = TRIP;
+            eventCard = true;
+        }if(currentCard.CompareTag("Run")){
+            currSprite = RUN;
+            eventCard = true;
         }
 
         cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
@@ -307,6 +327,14 @@ public class InventoryMgr2D : MonoBehaviour
         }else if(cardMgr3D.currCard.CompareTag("Lake")){
             ControlMgr2D.inst.fungus = true;
             complete = true;
+        }else if(cardMgr3D.currCard.CompareTag("Cabin")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Candle")){
+                ControlMgr2D.inst.spear = true;
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
+                ControlMgr2D.inst.spear = true;
+                complete = true;
+            }
         }
 
         cardView.SetActive(!complete);

@@ -15,7 +15,9 @@ public class CardMgr3D : MonoBehaviour
 
     public List<Card> allItemCards;
     public List<Card> allEventCards;
-    public Card improvedTechnique, venom, fungus, axe, matches;
+    public Card improvedTechnique, venom, fungus, matches;
+    //public List<Card> axes;
+    public Card axe, spear, sword;
 
     public List<GameObject> itemSlots;
     public List<GameObject> eventSlots;
@@ -28,7 +30,7 @@ public class CardMgr3D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(InventoryMgr3D.inst.currLevel == 1){
+        if(InventoryMgr3D.inst.currLevel == 1 || InventoryMgr3D.inst.currLevel == 2){
             foreach(GameObject itemSlot in itemSlots){
                 int random = Random.Range(1, allItemCards.Count);
                 allItemCards[(random - 1)].transform.SetParent(itemSlot.transform, false);
@@ -52,7 +54,6 @@ public class CardMgr3D : MonoBehaviour
                 {
                     fungus.transform.SetParent(effectSlots[index].transform, false);
                 }else if(allEventCards[(random -1)].CompareTag("Treehouse")){
-                    axe.transform.SetParent(effectSlots[index].transform, false);
                     matches.transform.SetParent(effectSlots[index].transform, false);
                 }
 
@@ -60,8 +61,16 @@ public class CardMgr3D : MonoBehaviour
                 index++;
             }
 
-            if(InventoryMgr3D.inst.levelOneComplete){
+            if(InventoryMgr3D.inst.levelOneComplete || InventoryMgr3D.inst.levelTwoComplete){
                 clearSticks();
+            }
+        }else if(InventoryMgr3D.inst.currLevel == 3){
+            foreach(GameObject eventSlot in eventSlots){
+                int random = Random.Range(1, allEventCards.Count);
+                allEventCards[(random - 1)].transform.SetParent(eventSlot.transform, false);
+                allEventCards[(random -1)].card.SetActive(true);
+
+                allEventCards.RemoveAt(random - 1);
             }
         }
     }
@@ -79,6 +88,11 @@ public class CardMgr3D : MonoBehaviour
             oppositeTag = "R1";
         else if(System.String.Equals(currTag, "R1"))
             oppositeTag = "L1";
+
+        if(System.String.Equals(currTag, "L2"))
+            oppositeTag = "R2";
+        else if(System.String.Equals(currTag, "R2"))
+            oppositeTag = "L2";
 
         foreach(GameObject itemSlot in itemSlots){
             if(itemSlot.CompareTag(oppositeTag))
@@ -99,6 +113,16 @@ public class CardMgr3D : MonoBehaviour
             oppositeTag = "R1";
         else if(System.String.Equals(currTag, "R1"))
             oppositeTag = "L1";
+
+        if(System.String.Equals(currTag, "L2"))
+            oppositeTag = "R2";
+        else if(System.String.Equals(currTag, "R2"))
+            oppositeTag = "L2";
+
+        if(System.String.Equals(currTag, "L3"))
+            oppositeTag = "R3";
+        else if(System.String.Equals(currTag, "R3"))
+            oppositeTag = "L3";
 
         foreach(GameObject eventSlot in eventSlots){
             if(eventSlot.CompareTag(oppositeTag))

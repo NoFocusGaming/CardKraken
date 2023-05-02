@@ -9364,6 +9364,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sign
       objectReference: {fileID: 0}
+    - target: {fileID: 6481087096944345566, guid: f9dfaeb60e9aeda4da63f896efef935b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8166372174338015242, guid: f9dfaeb60e9aeda4da63f896efef935b,
         type: 3}
       propertyPath: m_RootOrder
@@ -28275,6 +28280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   companion: {fileID: 148901896}
   dialogue: []
+  inventoryMgr: {fileID: 0}
 --- !u!1001 &914073424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34312,6 +34318,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sign
       objectReference: {fileID: 0}
+    - target: {fileID: 6481087096944345566, guid: f9dfaeb60e9aeda4da63f896efef935b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8166372174338015242, guid: f9dfaeb60e9aeda4da63f896efef935b,
         type: 3}
       propertyPath: m_RootOrder
@@ -36895,17 +36906,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f30431efb310e4ba1d2fc5c85a53e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allCards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 1346112477}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  allItemCards: []
+  allEventCards: []
+  improvedTechnique: {fileID: 0}
+  venom: {fileID: 0}
+  fungus: {fileID: 0}
+  matches: {fileID: 0}
+  axes: []
+  spears: []
+  swords: []
+  itemSlots: []
+  eventSlots: []
+  effectSlots: []
   currCard: {fileID: 0}
   tastySnack: {fileID: 0}
+  tastySnack1: {fileID: 0}
+  stick0: {fileID: 0}
+  stick1: {fileID: 0}
   leaf: {fileID: 1092742979}
   rock: {fileID: 1786097448}
+  campfire0: {fileID: 0}
+  campfire1: {fileID: 0}
 --- !u!1001 &1151043357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43860,18 +43881,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1346112474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1346112477 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 706998148898165762, guid: f9dfaeb60e9aeda4da63f896efef935b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1346112474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1346112476}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb300de60e948ad4c86cdf5a2b254d8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1346112478
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -54819,6 +54828,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 6481087096944345566, guid: f9dfaeb60e9aeda4da63f896efef935b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8166372174338015242, guid: f9dfaeb60e9aeda4da63f896efef935b,
         type: 3}

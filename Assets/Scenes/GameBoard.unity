@@ -2352,14 +2352,14 @@ MonoBehaviour:
   CAMPFIRE: {fileID: 21300000, guid: f26220c14525d134c89f340b58dc79bd, type: 3}
   SQUIRREL: {fileID: 21300000, guid: df4f20cec723b924c8635652f42c2b17, type: 3}
   SNAKE: {fileID: 21300000, guid: 58ccb3334119ddd468ed86f24bef1940, type: 3}
-  TREEHOUSE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
-  LAKE: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
-  SWORDSTONE: {fileID: 0}
-  CABIN: {fileID: 0}
-  CABIN2: {fileID: 0}
-  CLIFF: {fileID: 0}
-  WELL: {fileID: 0}
-  LUMP: {fileID: 0}
+  TREEHOUSE: {fileID: 21300000, guid: b3b9bd5bc4f146246a91d43c84db803a, type: 3}
+  LAKE: {fileID: 21300000, guid: 715e7cfb59342c24fbbbc4235a79e722, type: 3}
+  SWORDSTONE: {fileID: 21300000, guid: df31ed9a6a0458142ba7e5b65ddce5af, type: 3}
+  CABIN: {fileID: 21300000, guid: 4ca21513260724746b70fe8bd37117a8, type: 3}
+  CABIN2: {fileID: 21300000, guid: 4ca21513260724746b70fe8bd37117a8, type: 3}
+  CLIFF: {fileID: 21300000, guid: 98f688870948042448af5bdb36b231c8, type: 3}
+  WELL: {fileID: 21300000, guid: 918d4e16a4eded244b60d77b93a5a536, type: 3}
+  LUMP: {fileID: 21300000, guid: f49c6f0eceb0d2542821197ea911d86a, type: 3}
   PERFECTSTICK: {fileID: 21300000, guid: 4dc34c91b97c48c4eb1c986de9c497c7, type: 3}
   ATTACK: {fileID: 21300000, guid: d9a1dc7b55bc7274a95b6d788771ff9a, type: 3}
   SLAM: {fileID: 21300000, guid: 761c077daeeb54a44af08ced6532a911, type: 3}
