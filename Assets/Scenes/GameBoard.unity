@@ -2311,20 +2311,20 @@ MonoBehaviour:
   - {fileID: 1789479448}
   - {fileID: 781312080}
   inventoryPanels6:
-  - {fileID: 810601830}
-  - {fileID: 1253555922}
-  - {fileID: 119673338}
-  - {fileID: 1047806220}
-  - {fileID: 796702222}
-  - {fileID: 687574788}
+  - {fileID: 661300656}
+  - {fileID: 1456990501}
+  - {fileID: 1294209686}
+  - {fileID: 1250129143}
+  - {fileID: 6193075}
+  - {fileID: 1093961163}
   inventoryPanels7:
-  - {fileID: 1464854592}
-  - {fileID: 979688528}
-  - {fileID: 1000403567}
-  - {fileID: 787527561}
-  - {fileID: 1599489895}
-  - {fileID: 1549431945}
-  - {fileID: 2074592013}
+  - {fileID: 1799376077}
+  - {fileID: 293829910}
+  - {fileID: 1445001907}
+  - {fileID: 562127116}
+  - {fileID: 439107716}
+  - {fileID: 390933637}
+  - {fileID: 8963849}
   currPanel: []
   currInventoryIndex: 0
   invPanelsParentObjects:
@@ -3651,6 +3651,8 @@ MonoBehaviour:
   venom: 0
   axe: 0
   matches: 0
+  spear: 0
+  sword: 0
 --- !u!1 &1742463800
 GameObject:
   m_ObjectHideFlags: 0

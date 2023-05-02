@@ -37,7 +37,7 @@ public class InventoryMgr2D : MonoBehaviour
     public GameObject dragAndDropInstructs;
     public GameObject qInstruct, rInstruct;
 
-    public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false;
+    public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false, bossEventCard = false;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +67,7 @@ public class InventoryMgr2D : MonoBehaviour
         companionCard = false;
         eventCard = false;
         effectCard = false;
+        bossEventCard = false;
 
         if(currentCard.CompareTag("Cat"))
         {
@@ -206,27 +207,27 @@ public class InventoryMgr2D : MonoBehaviour
 
         if(currentCard.CompareTag("Attack")){
             currSprite = ATTACK;
-            eventCard = true;
+            bossEventCard = true;
         }else if(currentCard.CompareTag("Slam")){
             currSprite = SLAM;
-            eventCard = true;
+            bossEventCard = true;
         }else if(currentCard.CompareTag("Fling")){
             currSprite = FLING;
-            eventCard = true;
+            bossEventCard = true;
         }else if(currentCard.CompareTag("Grab")){
             currSprite = GRAB;
-            eventCard = true;
+            bossEventCard = true;
         }else if(currentCard.CompareTag("Trip")){
             currSprite = TRIP;
-            eventCard = true;
+            bossEventCard = true;
         }if(currentCard.CompareTag("Run")){
             currSprite = RUN;
-            eventCard = true;
+            bossEventCard = true;
         }
 
         cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
 
-        if(eventCard && (inventoryMgr3D.currLevel != 0)){
+        if((eventCard || bossEventCard) && (inventoryMgr3D.currLevel != 0)){
             qInstruct.SetActive(false);
             rInstruct.SetActive(true);
         }
@@ -291,6 +292,7 @@ public class InventoryMgr2D : MonoBehaviour
 
     public bool completeEventCard(int index){
         if(index > inventoryMgr3D.currInvTags.Count){
+            Debug.Log("index outside of range of inventory");
             ControlMgr2D.inst.eventFailed = true;
             return false;
         }
@@ -335,6 +337,35 @@ public class InventoryMgr2D : MonoBehaviour
                 ControlMgr2D.inst.spear = true;
                 complete = true;
             }
+        }else if(cardMgr3D.currCard.CompareTag("Cabin2")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Candle")){
+                ControlMgr2D.inst.spear = true;
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
+                ControlMgr2D.inst.spear = true;
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Well")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rope")){
+                ControlMgr2D.inst.axe = true;
+                complete = true;
+            }else{
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Lump")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Axe") || String.Equals(inventoryMgr3D.currInvTags[index-1], "Shield") || String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
+                ControlMgr2D.inst.sword = true;
+                complete = true;
+            }else{
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("PerfectStick")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Stone") || String.Equals(inventoryMgr3D.currInvTags[index-1], "Arrowhead") || String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
+                ControlMgr2D.inst.spear = true;
+                complete = true;
+            }else{
+                complete = true;
+            }
         }
 
         cardView.SetActive(!complete);
@@ -343,8 +374,88 @@ public class InventoryMgr2D : MonoBehaviour
         inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
         currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
 
-        if(inventoryMgr3D.currLevel == 1)
+        if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2)
             CardMgr3D.inst.hideOtherEvent();
+
+        ControlMgr2D.inst.eventFailed = !complete;
+
+        return complete;
+    }
+
+    public bool completeBossEvent(int index){
+        if(index > inventoryMgr3D.currInvTags.Count){
+            Debug.Log("index outside of range of inventory");
+            ControlMgr2D.inst.eventFailed = true;
+            return false;
+        }
+
+        bool complete = false;
+
+        if(cardMgr3D.currCard.CompareTag("Attack")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rock")){
+                inventoryMgr3D.AttackKraken(1);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Sword")){
+                inventoryMgr3D.AttackKraken(5);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Axe")){
+                inventoryMgr3D.AttackKraken(4);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Spear")){
+                inventoryMgr3D.AttackKraken(4);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Needle")){
+                inventoryMgr3D.AttackKraken(2);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Arrowhead")){
+                inventoryMgr3D.AttackKraken(3);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
+                inventoryMgr3D.AttackKraken(3);
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
+                inventoryMgr3D.AttackKraken(2);
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Slam")){
+            if(inventoryMgr3D.currInvWeapon[index-1])
+                complete = true;
+            else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Shield"))
+                complete = true;
+        }else if(cardMgr3D.currCard.CompareTag("Fling")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Feather")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Candle")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Match")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Leaf")){
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Grab")){
+            complete = true;
+        }else if(cardMgr3D.currCard.CompareTag("Trip")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Sword")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Arrowhead")){
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Axe")){
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Run")){
+            if(inventoryMgr3D.currInvWeapon[index-1])
+                complete = true;
+            else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rope"))
+                complete = true;
+        }
+
+        cardView.SetActive(!complete);
+        inventoryMgr3D.currInvSprites.RemoveAt(index-1);
+        inventoryMgr3D.currInvTags.RemoveAt(index-1);
+        inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
+        currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
 
         ControlMgr2D.inst.eventFailed = !complete;
 
@@ -358,9 +469,13 @@ public class InventoryMgr2D : MonoBehaviour
             cardView.SetActive(false);
             setInventory();
 
-            if(InventoryMgr3D.inst.currLevel == 1){
-                inventoryMgr3D.levelOneComplete = true;
+            if(inventoryMgr3D.currLevel == 1){
                 ControlMgr3D.inst.levelComplete = true;
+                inventoryMgr3D.levelOneComplete = true;
+                cardMgr3D.clearSticks();
+            }else if(inventoryMgr3D.currLevel == 2){
+                ControlMgr3D.inst.levelComplete = true;
+                inventoryMgr3D.levelTwoComplete = true;
                 cardMgr3D.clearSticks();
             }
             return true;

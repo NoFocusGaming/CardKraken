@@ -103,6 +103,19 @@ public class ControlMgr2D : MonoBehaviour
             cardUsed = completeEvent;
         }
 
+        if(inventoryMgr2D.bossEventCard){
+            if(Input.GetKeyDown(KeyCode.Alpha1)){
+                completeEvent = inventoryMgr2D.completeBossEvent(1);
+            }else if(Input.GetKeyDown(KeyCode.Alpha2)){
+                completeEvent = inventoryMgr2D.completeBossEvent(2);
+            }else if(Input.GetKeyDown(KeyCode.Alpha3)){
+                completeEvent = inventoryMgr2D.completeBossEvent(3);
+            }else if(Input.GetKeyDown(KeyCode.Alpha4)){
+                completeEvent = inventoryMgr2D.completeBossEvent(4);
+            }
+            cardUsed = completeEvent;
+        }
+
         if(completeEvent){
             if(snack){
                 controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
@@ -125,6 +138,11 @@ public class ControlMgr2D : MonoBehaviour
             if(spear){
                 controlMgr3D.cardMgr3D.spear.transform.SetParent(controlMgr3D.cardMgr3D.currCard.transform.parent.gameObject.transform, false);
                 controlMgr3D.cardMgr3D.spear.card.SetActive(true);
+            }
+
+            if(sword){
+                controlMgr3D.cardMgr3D.sword.transform.SetParent(controlMgr3D.cardMgr3D.currCard.transform.parent.gameObject.transform, false);
+                controlMgr3D.cardMgr3D.sword.card.SetActive(true);
             }
 
             if(matches)
