@@ -26,12 +26,14 @@ public class InventoryMgr3D : MonoBehaviour
 
     public int krakenHealth = 10;
 
+    // function to wipe inventory (called on event failure)
     public void wipeInventory(){
         currInvSprites.Clear();
         currInvTags.Clear();
         currInvWeapon.Clear();
     }
 
+    // handling successful weapon use against kraken
     public void AttackKraken(int damage){
         Debug.Log("Attack Kraken with damage: " + damage);
         krakenHealth -= damage;

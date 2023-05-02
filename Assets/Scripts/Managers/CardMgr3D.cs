@@ -30,7 +30,10 @@ public class CardMgr3D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Loading Cards randomly in gameplay for levels 1 + 2
         if(InventoryMgr3D.inst.currLevel == 1 || InventoryMgr3D.inst.currLevel == 2){
+
+            //randomly load item Cards into available slots
             foreach(GameObject itemSlot in itemSlots){
                 int random = Random.Range(1, allItemCards.Count);
                 allItemCards[(random - 1)].transform.SetParent(itemSlot.transform, false);
@@ -38,12 +41,14 @@ public class CardMgr3D : MonoBehaviour
                 allItemCards.RemoveAt(random - 1);
             }  
 
+            //randomly load event cards into available slots
             int index = 0;
             foreach(GameObject eventSlot in eventSlots){
                 int random = Random.Range(1, allEventCards.Count);
                 allEventCards[(random - 1)].transform.SetParent(eventSlot.transform, false);
                 allEventCards[(random -1)].card.SetActive(true);
                 
+                //for specific event cards, set corresponding location of items/effects for after
                 if(allEventCards[(random -1)].CompareTag("Squirrel"))
                 {
                     improvedTechnique.transform.SetParent(effectSlots[index].transform, false);
@@ -61,10 +66,14 @@ public class CardMgr3D : MonoBehaviour
                 index++;
             }
 
-            if(InventoryMgr3D.inst.levelOneComplete || InventoryMgr3D.inst.levelTwoComplete){
+            //check if levels 1 or 2 have been played through previously
+            if((InventoryMgr3D.inst.currLevel == 1) && InventoryMgr3D.inst.levelOneComplete){
+                clearSticks();
+            }else if((InventoryMgr3D.inst.currLevel == 2) && InventoryMgr3D.inst.levelTwoComplete){
                 clearSticks();
             }
         }else if(InventoryMgr3D.inst.currLevel == 3){
+            //for game level 3 (boss level) randomly load events into available slots
             foreach(GameObject eventSlot in eventSlots){
                 int random = Random.Range(1, allEventCards.Count);
                 allEventCards[(random - 1)].transform.SetParent(eventSlot.transform, false);
@@ -75,6 +84,8 @@ public class CardMgr3D : MonoBehaviour
         }
     }
 
+    // when an item is used in game levels 1 or 2, 
+    // call this function to make the corresponding item card on the opposite path dissapear
     public void hideOtherItem()
     {
         string currTag = currCard.transform.parent.gameObject.tag;
@@ -100,6 +111,8 @@ public class CardMgr3D : MonoBehaviour
         }
     }
 
+    // when an event is completed in game levels 1 or 2, 
+    // call this function to make the corresponding event card on the opposite path dissapear
     public void hideOtherEvent()
     {
         string currTag = currCard.transform.parent.gameObject.tag;
@@ -130,6 +143,7 @@ public class CardMgr3D : MonoBehaviour
         }
     }
 
+    // function to set tastysnack event progression inactive
     public void clearSticks(){
         tastySnack.SetActive(false);
         tastySnack1.SetActive(false);

@@ -233,6 +233,7 @@ public class InventoryMgr2D : MonoBehaviour
         }
     }
 
+    // Setting the inventory based on max cards + curr inventory in InventoryMgr3D
     public void setInventory()
     {
         currInventoryIndex = inventoryMgr3D.maxCards - 4;
@@ -258,6 +259,7 @@ public class InventoryMgr2D : MonoBehaviour
         }
     }
 
+    // adding curr card in carview to inventory
     public void addCardToInv(Card currCard)
     {
         if(inventoryMgr3D.currInvTags.Count < inventoryMgr3D.maxCards){
@@ -267,6 +269,7 @@ public class InventoryMgr2D : MonoBehaviour
             cardView.SetActive(false);
             currPanel[(inventoryMgr3D.currInvTags.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
 
+            // for Tutorial Level, set tutorialComplete upon user adding either rock or leaf item to inv
             if(inventoryMgr3D.currLevel == 0){
                 if(currCard.card.CompareTag("Rock")){
                     CardMgr3D.inst.leaf.SetActive(false);
@@ -277,12 +280,14 @@ public class InventoryMgr2D : MonoBehaviour
                     ControlMgr3D.inst.levelComplete = true;
                     inventoryMgr3D.tutorialComplete = true;
                 }
-            }else if(inventoryMgr3D.currLevel == 1){
+            }else if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.curLevel == 2){
+                // for levels 1 + 2, hide corresponding item in opposite path
                 cardMgr3D.hideOtherItem();
             }
         }
     }
 
+    // set companion sprite in tutorial level
     public void setCompanionSprite(){
         companionMgr.setCompanion(currSprite);
         cardView.SetActive(false);
@@ -290,7 +295,11 @@ public class InventoryMgr2D : MonoBehaviour
         companionCard = false;
     }
 
+    // function to process completing normal events
     public bool completeEventCard(int index){
+
+        // current buggy solution to fail event,
+        // when user presses inventory option that doesn't currently have any item
         if(index > inventoryMgr3D.currInvTags.Count){
             Debug.Log("index outside of range of inventory");
             ControlMgr2D.inst.eventFailed = true;
@@ -299,6 +308,7 @@ public class InventoryMgr2D : MonoBehaviour
 
         bool complete = false;
 
+        // specific event conditions for each normal event
         if(cardMgr3D.currCard.CompareTag("Campfire")){
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Stick")){
                 ControlMgr2D.inst.snack = true;
@@ -368,13 +378,17 @@ public class InventoryMgr2D : MonoBehaviour
             }
         }
 
+        // if event was completed, remove cardView
         cardView.SetActive(!complete);
+
+        // remove selected item from inventory
         inventoryMgr3D.currInvSprites.RemoveAt(index-1);
         inventoryMgr3D.currInvTags.RemoveAt(index-1);
         inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
         currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
 
-        if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2)
+        // for levels 1 + 2, if event completed remove corresponding event in other path
+        if(complete && (inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2))
             CardMgr3D.inst.hideOtherEvent();
 
         ControlMgr2D.inst.eventFailed = !complete;
@@ -382,7 +396,10 @@ public class InventoryMgr2D : MonoBehaviour
         return complete;
     }
 
+    // function to process completing boss events
     public bool completeBossEvent(int index){
+        // current buggy solution to fail event,
+        // when user presses inventory option that doesn't currently have any item
         if(index > inventoryMgr3D.currInvTags.Count){
             Debug.Log("index outside of range of inventory");
             ControlMgr2D.inst.eventFailed = true;
@@ -462,8 +479,10 @@ public class InventoryMgr2D : MonoBehaviour
         return complete;
     }
 
+    // completion of effect cards
     public bool completeEffectCard()
     {
+        // currently only tastySnack has implementation, increases inventory size
         if(cardMgr3D.currCard.CompareTag("TastySnack")){
             inventoryMgr3D.maxCards += 1;
             cardView.SetActive(false);

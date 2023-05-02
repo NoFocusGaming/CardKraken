@@ -22,9 +22,12 @@ public class CardView : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // handling companion card drag and drop movement
         if(Input.GetMouseButtonDown(0))
         {
             if(inventoryMgr.companionCard){
+
+                // send graphics raycast (for UI detection) at screen from mouse click position
                 GraphicRaycaster graphicsRaycaster = this.GetComponent<GraphicRaycaster>();
 
                 PointerEventData ped = new PointerEventData(null);
@@ -36,6 +39,8 @@ public class CardView : MonoBehaviour
 
                 foreach (RaycastResult result in results)
                 {
+                    // if raycast encounters "cardview" with companion card:
+                    // set mouseSelect to true, set offset between mouse position and game object
                     if(result.gameObject.CompareTag("CardView")){
                         selectedCard = result.gameObject;
                         mouseSelect = true;
@@ -45,11 +50,13 @@ public class CardView : MonoBehaviour
             }
         }
 
+        // if mouse is pressed down on companion card, move game object on screen with mouse movement
         if(mouseSelect)
         {
             selectedCard.transform.position = Input.mousePosition + offset;
         }
 
+        // reseting mouseSelect on mouse up/release
         if(mouseSelect && Input.GetMouseButtonUp(0))
         {
             selectedCard = null;
@@ -58,6 +65,7 @@ public class CardView : MonoBehaviour
     }
 
     void FixedUpdate(){
+        // when cardView overlaps with companion slot, set companion sprite
         if(mouseSelect && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.companion.GetComponent<RectTransform>()))
             inventoryMgr.setCompanionSprite();
     }

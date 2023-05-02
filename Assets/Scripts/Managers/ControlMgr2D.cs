@@ -46,6 +46,7 @@ public class ControlMgr2D : MonoBehaviour
             inventoryMgr2D.cardView.SetActive(true);
         }
 
+        //controlling companion dialogue for Tutorial Level, based on currCard cardtype
         if(InventoryMgr3D.inst.currLevel == 0){
             if(inventoryMgr2D.itemCard && InventoryMgr3D.inst.currInvTags.Count == 0){
                 CompanionMgr.inst.setDialogue(0);
@@ -64,8 +65,10 @@ public class ControlMgr2D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //closing GameBoard scene on press of key 'Q'
+        // closing GameBoard scene on press of key 'Q'
         if(!inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.Q)){
+
+            //reactive the card in 3D world if it has not been used
             if(controlMgr3D.cardPresent){
                 if(!cardUsed){
                     controlMgr3D.cardMgr3D.currCard.SetActive(true);
@@ -78,11 +81,15 @@ public class ControlMgr2D : MonoBehaviour
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
+        // control for retreating to village at 'R' keypress 
+        // only event cards, not available in tutorial level
         if((InventoryMgr3D.inst.currLevel != 0) && inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.R)){
             InventoryMgr3D.inst.currLevel = 4;
             SceneManager.LoadScene("VillageCardWorld");
         }
 
+        // adding item or effect card to inventory at keypress E
+        // does not work on "TastySnack" effect
         if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.E)){
             if(!controlMgr3D.cardMgr3D.currCard.CompareTag("TastySnack")){
                 inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
@@ -90,6 +97,23 @@ public class ControlMgr2D : MonoBehaviour
             }
         }
 
+        // use effect card on key press 'F'
+        if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
+            completeEffect = inventoryMgr2D.completeEffectCard();
+            cardUsed = completeEffect;
+        }
+
+        // remove companion dialogue upon card use
+        if(cardUsed){
+            CompanionMgr.inst.removeDialogue();
+        }
+
+
+        // ====================================
+        // Event Completion Controls
+        // ====================================
+
+        // check for inventory keypresses when event card is active
         if(inventoryMgr2D.eventCard){
             if(Input.GetKeyDown(KeyCode.Alpha1)){
                 completeEvent = inventoryMgr2D.completeEventCard(1);
@@ -103,6 +127,7 @@ public class ControlMgr2D : MonoBehaviour
             cardUsed = completeEvent;
         }
 
+        // check for inventory keypresses when boss event card is active
         if(inventoryMgr2D.bossEventCard){
             if(Input.GetKeyDown(KeyCode.Alpha1)){
                 completeEvent = inventoryMgr2D.completeBossEvent(1);
@@ -116,6 +141,7 @@ public class ControlMgr2D : MonoBehaviour
             cardUsed = completeEvent;
         }
 
+        // if event completed: set effect + gained item cards active in 3D world
         if(completeEvent){
             if(snack){
                 controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
@@ -156,19 +182,11 @@ public class ControlMgr2D : MonoBehaviour
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
+        // if event failed: wipe inventory and return to village card world
         if(eventFailed){
             InventoryMgr3D.inst.wipeInventory();
             InventoryMgr3D.inst.currLevel = 4;
             SceneManager.LoadScene("VillageCardWorld");
-        }
-
-        if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
-            completeEffect = inventoryMgr2D.completeEffectCard();
-            cardUsed = completeEffect;
-        }
-
-        if(cardUsed){
-            CompanionMgr.inst.removeDialogue();
         }
     }
 }

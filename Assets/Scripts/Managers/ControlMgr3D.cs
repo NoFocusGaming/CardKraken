@@ -28,6 +28,7 @@ public class ControlMgr3D : MonoBehaviour
         cardMgr3D = CardMgr3D.inst;
         inventoryMgr3D = InventoryMgr3D.inst;
 
+        // setting for village level to allow use of portals
         if(inventoryMgr3D.currLevel == 4){
             levelComplete = true;
         }
@@ -36,13 +37,14 @@ public class ControlMgr3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //loading gameboard scene when card is in front of player + they press 'f' key
+        // loading gameboard scene when card is in front of player + they press 'f' key
         if(!inventoryOpen && pressF && Input.GetKeyDown(KeyCode.F)){
             cardMgr3D.currCard.SetActive(false);
             inventoryOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
         }
 
+        // open inventory on keypress 'I'
         if(!inventoryOpen && Input.GetKeyDown(KeyCode.I)){
             inventoryOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
@@ -51,12 +53,15 @@ public class ControlMgr3D : MonoBehaviour
 
     void FixedUpdate()
     {
+        // when inventory is closed:
+        // check for obstacles (walls/cards) in front of player using raycast
+        // check for loading zone collider using downward raycast
         if(!inventoryOpen){
             RaycastHit hit;
 
             //detection of card infront of objects
-            if (Physics.Raycast (cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.forward), out hit, 8))
-            {
+            if (Physics.Raycast (cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.forward), out hit, 8)){
+                // if a card object is encountered, setting obj to currCard and allow for inv to open (pressF bool)
                 if(!hit.collider.gameObject.CompareTag("Wall")){
                     pressF = true;            
                     cardPresent = true;
@@ -70,6 +75,7 @@ public class ControlMgr3D : MonoBehaviour
 
             instructions.SetActive(pressF);
 
+            // Detection of wall collider in front of camera
             if(Physics.Raycast(cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.forward), out hit, 2))
             {
                 if(hit.collider.gameObject.CompareTag("Wall")){
@@ -77,6 +83,7 @@ public class ControlMgr3D : MonoBehaviour
                 }
             }
 
+            // downward raycast (on levelComplete) to detect if over loading zone
             if(levelComplete && Physics.Raycast(cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
                 if(hit.collider.gameObject.CompareTag("LoadZoneVillage")){
