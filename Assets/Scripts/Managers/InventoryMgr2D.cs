@@ -280,7 +280,7 @@ public class InventoryMgr2D : MonoBehaviour
                     ControlMgr3D.inst.levelComplete = true;
                     inventoryMgr3D.tutorialComplete = true;
                 }
-            }else if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.curLevel == 2){
+            }else if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2){
                 // for levels 1 + 2, hide corresponding item in opposite path
                 cardMgr3D.hideOtherItem();
             }
