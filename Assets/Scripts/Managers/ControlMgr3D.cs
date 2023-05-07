@@ -86,6 +86,8 @@ public class ControlMgr3D : MonoBehaviour
             // downward raycast (on levelComplete) to detect if over loading zone
             if(levelComplete && Physics.Raycast(cameraMgr.cameraObj.transform.position, cameraMgr.cameraObj.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
             {
+                Debug.Log("hit collider: " + hit.collider.gameObject);
+
                 if(hit.collider.gameObject.CompareTag("LoadZoneVillage")){
                     inventoryMgr3D.currLevel = 4;
                     SceneManager.LoadScene("VillageCardWorld", LoadSceneMode.Single);
