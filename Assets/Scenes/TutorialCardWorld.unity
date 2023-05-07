@@ -4885,7 +4885,7 @@ Transform:
   - {fileID: 412177920}
   - {fileID: 1316076116}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &271356744
 PrefabInstance:
@@ -16860,8 +16860,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2031805593}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &796168610
 MonoBehaviour:
@@ -18040,7 +18040,7 @@ Transform:
   m_GameObject: {fileID: 823977644}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -5.304, y: 47.9, z: 20.3}
-  m_LocalScale: {x: 1, y: 1, z: 1.9168093}
+  m_LocalScale: {x: 1.8, y: 1, z: 1.9168093}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1260965798}
@@ -27779,7 +27779,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1211953552
 MonoBehaviour:
@@ -29051,7 +29051,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1259758380
 PrefabInstance:
@@ -29274,7 +29274,7 @@ PrefabInstance:
     - target: {fileID: 8166372174338015242, guid: f9dfaeb60e9aeda4da63f896efef935b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.72
+      value: 1.78
       objectReference: {fileID: 0}
     - target: {fileID: 8166372174338015242, guid: f9dfaeb60e9aeda4da63f896efef935b,
         type: 3}
@@ -37860,7 +37860,7 @@ Transform:
   - {fileID: 899553097}
   - {fileID: 1785008088}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1723307920 stripped
 Transform:
@@ -40305,7 +40305,7 @@ RectTransform:
   - {fileID: 1219300656}
   - {fileID: 938615775}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -44183,7 +44183,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 796168609}
   - {fileID: 2107365980}
   - {fileID: 58811363}
   - {fileID: 2141895033}
@@ -44191,7 +44190,7 @@ Transform:
   - {fileID: 562747723}
   - {fileID: 1252804449}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2032825696 stripped
 Transform:

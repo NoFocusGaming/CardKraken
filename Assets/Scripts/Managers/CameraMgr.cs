@@ -39,7 +39,7 @@ public class CameraMgr : MonoBehaviour
             if (!obstacle && Input.GetKeyUp(KeyCode.W))
                 // i added "multiply by 5" so it goes farther instead of player having to press W button multiple times to get to each card
                 // feel free to change or back to original one - jules
-                cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed * 5);
+                cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed * 4);
         }
     }
 
