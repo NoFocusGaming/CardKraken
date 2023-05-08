@@ -12,6 +12,9 @@ public class InventoryMgr2D : MonoBehaviour
     }
 
     public GameObject cardView;
+
+    public GameObject inventoryObject;
+
     private InventoryMgr3D inventoryMgr3D;
     private CardMgr3D cardMgr3D;
     private CompanionMgr companionMgr;
@@ -31,15 +34,17 @@ public class InventoryMgr2D : MonoBehaviour
     public Sprite CAMPFIRE, SQUIRREL, SNAKE, TREEHOUSE, LAKE, SWORDSTONE, CABIN, CABIN2, CLIFF, WELL, LUMP, PERFECTSTICK;
     public Sprite ATTACK, SLAM, FLING, GRAB, TRIP, RUN;
     public Sprite TASTYSNACK, IMPROVEDTECH, VENOM, FUNGUS;
+    public Sprite GRANNY, FOOL, LOVER1, LOVER2;
 
     public Sprite currSprite;
 
     public GameObject dragAndDropInstructs;
     public GameObject qInstruct, rInstruct;
 
-    public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false, bossEventCard = false;
-
+    public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false, bossEventCard = false, characterCard = false;
+    public bool granny = false, fool = false, lover1 = false, lover2 = false;
     public bool itemInInventory = false;
+    public bool venomEffect = false, improvedTechniqueEffect = false, fungusEffect = false;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +75,11 @@ public class InventoryMgr2D : MonoBehaviour
         eventCard = false;
         effectCard = false;
         bossEventCard = false;
+        characterCard = false;
+        granny = false;
+        fool = false;
+        lover1 = false;
+        lover2 = false;
 
         if(currentCard.CompareTag("Cat"))
         {
@@ -227,6 +237,24 @@ public class InventoryMgr2D : MonoBehaviour
             bossEventCard = true;
         }
 
+        if(currentCard.CompareTag("Granny")){
+            currSprite = GRANNY;
+            granny = true;
+            characterCard = true;
+        }else if(currentCard.CompareTag("Fool")){
+            currSprite = FOOL;
+            fool = true;
+            characterCard = true;
+        }else if(currentCard.CompareTag("Lover1")){
+            currSprite = LOVER1;
+            lover1 = true;
+            characterCard = true;
+        }else if(currentCard.CompareTag("Lover2")){
+            currSprite = LOVER2;
+            lover2 = true;
+            characterCard = true;
+        }
+
         cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
 
         if((eventCard || bossEventCard) && (inventoryMgr3D.currLevel != 0)){
@@ -264,10 +292,14 @@ public class InventoryMgr2D : MonoBehaviour
     // adding curr card in carview to inventory
     public void addCardToInv(Card currCard)
     {
+        if(CardMgr3D.inst.currCard.tag.Equals("Fungus"))
+            inventoryMgr3D.fungus = true;
 
         foreach(string invTag in InventoryMgr3D.inst.currInvTags){
-            if(invTag.Equals(CardMgr3D.inst.currCard.tag))
-                itemInInventory = true;
+            if(invTag.Equals(CardMgr3D.inst.currCard.tag)){
+                if(!invTag.Equals("Axe") && !invTag.Equals("Spear"))
+                    itemInInventory = true;
+            }
         }
 
         if(inventoryMgr3D.currInvTags.Count < inventoryMgr3D.maxCards){
@@ -309,14 +341,28 @@ public class InventoryMgr2D : MonoBehaviour
     // function to process completing normal events
     public bool completeEventCard(int index){
 
-        // current buggy solution to fail event,
-        // when user presses inventory option that doesn't currently have any item
+        bool complete = false;
+
+        // complete event returns false if index is not within curr inventory range
         if(index > inventoryMgr3D.currInvTags.Count){
             Debug.Log("index outside of range of inventory");
-            return false;
+            return complete;
         }
-
-        bool complete = false;
+        
+        if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Venom")){
+            venomEffect = true;
+            useEffectCard(index);
+            return complete;
+        }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Fungus")){
+            fungusEffect = true;
+            inventoryMgr3D.fungus = false;
+            useEffectCard(index);
+            return complete;
+        }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "ImprovedTechnique")){
+            improvedTechniqueEffect = true;
+            useEffectCard(index);
+            return complete;
+        }
 
         // specific event conditions for each normal event
         if(cardMgr3D.currCard.CompareTag("Campfire")){
@@ -402,62 +448,31 @@ public class InventoryMgr2D : MonoBehaviour
             }else{
                 complete = true;
             }
-        }
-
-        // if event was completed, remove cardView
-        cardView.SetActive(!complete);
-
-        // remove selected item from inventory
-        inventoryMgr3D.currInvSprites.RemoveAt(index-1);
-        inventoryMgr3D.currInvTags.RemoveAt(index-1);
-        inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
-        currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
-
-        // for levels 1 + 2, if event completed remove corresponding event in other path
-        if(complete && (inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2))
-            CardMgr3D.inst.hideOtherEvent();
-
-        ControlMgr2D.inst.eventFailed = !complete;
-
-        return complete;
-    }
-
-    // function to process completing boss events
-    public bool completeBossEvent(int index){
-        // current buggy solution to fail event,
-        // when user presses inventory option that doesn't currently have any item
-        if(index > inventoryMgr3D.currInvTags.Count){
-            Debug.Log("index outside of range of inventory");
-            ControlMgr2D.inst.eventFailed = true;
-            return false;
-        }
-
-        bool complete = false;
-
-        if(cardMgr3D.currCard.CompareTag("Attack")){
+        }if(cardMgr3D.currCard.CompareTag("Attack")){
+            int attackIncrease = improvedTechniqueEffect ? 1 : 0;
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rock")){
-                inventoryMgr3D.AttackKraken(1);
+                inventoryMgr3D.AttackKraken(1 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Sword")){
-                inventoryMgr3D.AttackKraken(5);
+                inventoryMgr3D.AttackKraken(5 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Axe")){
-                inventoryMgr3D.AttackKraken(4);
+                inventoryMgr3D.AttackKraken(4 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Spear")){
-                inventoryMgr3D.AttackKraken(4);
+                inventoryMgr3D.AttackKraken(4 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Needle")){
-                inventoryMgr3D.AttackKraken(2);
+                inventoryMgr3D.AttackKraken(2 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Arrowhead")){
-                inventoryMgr3D.AttackKraken(3);
+                inventoryMgr3D.AttackKraken(3 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
-                inventoryMgr3D.AttackKraken(3);
+                inventoryMgr3D.AttackKraken(3 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
-                inventoryMgr3D.AttackKraken(2);
+                inventoryMgr3D.AttackKraken(2 + attackIncrease);
                 complete = true;
             }
         }else if(cardMgr3D.currCard.CompareTag("Slam")){
@@ -494,15 +509,62 @@ public class InventoryMgr2D : MonoBehaviour
                 complete = true;
         }
 
+        // if event was completed, remove cardView
         cardView.SetActive(!complete);
+
+        // if a weapon was used after improved technique, deactivate effect
+        if( improvedTechniqueEffect && inventoryMgr3D.currInvWeapon[index-1]){
+            improvedTechniqueEffect = false;
+        }
+
+        // remove selected item from inventory if venom effect was not just used
+        if(!venomEffect){
+            inventoryMgr3D.currInvSprites.RemoveAt(index-1);
+            inventoryMgr3D.currInvTags.RemoveAt(index-1);
+            inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
+            currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
+        }else{
+            venomEffect = false;
+        }
+
+        // if fungus effect is active, fail current event (regardless of prev stuff)
+        if( fungusEffect ){
+            fungusEffect = false;
+            ControlMgr2D.inst.eventFailed = true;
+            Debug.Log("Fungus effect caused event fail");
+        }else{
+            ControlMgr2D.inst.eventFailed = !complete;
+        }
+
+        // for levels 1 + 2, if event completed remove corresponding event in other path
+        if(complete && (inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2))
+            CardMgr3D.inst.hideOtherEvent();
+
+        return complete;
+    }
+
+    // function to update inventory when effect card at given index is used (called in completeEventCard)
+    public void useEffectCard(int index){
         inventoryMgr3D.currInvSprites.RemoveAt(index-1);
         inventoryMgr3D.currInvTags.RemoveAt(index-1);
         inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
-        currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
 
-        ControlMgr2D.inst.eventFailed = !complete;
+        //load sprites of all cards in curr inventory
+        int i = 0;
+        foreach (Sprite s in inventoryMgr3D.currInvSprites)
+        {
+            currPanel[i].GetComponent<UnityEngine.UI.Image>().sprite = s;
+            i++;
+        }
 
-        return complete;
+        while(i < inventoryMgr3D.maxCards){
+            currPanel[i].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
+            i++;
+        }
+
+        if(inventoryMgr3D.currInvTags.Count == 0){
+            ControlMgr2D.inst.eventFailed = true;
+        }
     }
 
     // completion of effect cards

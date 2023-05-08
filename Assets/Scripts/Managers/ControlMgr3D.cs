@@ -17,7 +17,7 @@ public class ControlMgr3D : MonoBehaviour
 
     public bool pressF = false;
     public bool cardPresent = false;
-    public bool inventoryOpen = false;
+    public bool inventoryOpen = false, manualOpen = false;
 
     public bool levelComplete = false;
 
@@ -43,12 +43,14 @@ public class ControlMgr3D : MonoBehaviour
         if(!inventoryOpen && pressF && Input.GetKeyDown(KeyCode.F)){
             cardMgr3D.currCard.SetActive(false);
             inventoryOpen = true;
+            manualOpen = false;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
         }
 
         // open inventory on keypress 'I'
         if(!inventoryOpen && Input.GetKeyDown(KeyCode.I)){
             inventoryOpen = true;
+            manualOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
         }
     }

@@ -23,6 +23,10 @@ public class CompanionMgr : MonoBehaviour
 
         if(inventoryMgr.currLevel != 0)
             setCompanion(inventoryMgr.currCompanion);
+
+        if(inventoryMgr.currLevel == 4 && inventoryMgr.newToVillage){
+            setDialogue(0);
+        }
     }
 
     // Update is called once per frame

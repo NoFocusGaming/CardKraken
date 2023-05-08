@@ -19139,12 +19139,15 @@ MonoBehaviour:
   currInvSprites: []
   currInvWeapon: 
   currCompanion: {fileID: 21300000, guid: 6b2b3e925157f5f4cb178c952e02d8f7, type: 3}
+  BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   currLevel: 0
   tutorialComplete: 0
   levelOneComplete: 0
   levelTwoComplete: 0
   bossComplete: 0
+  newToVillage: 1
   krakenHealth: 10
+  fungus: 1
 --- !u!1 &798515830
 GameObject:
   m_ObjectHideFlags: 0
@@ -52453,6 +52456,7 @@ MonoBehaviour:
   pressF: 0
   cardPresent: 0
   inventoryOpen: 0
+  manualOpen: 0
   levelComplete: 0
   cardRange: 5
 --- !u!1001 &2145609217

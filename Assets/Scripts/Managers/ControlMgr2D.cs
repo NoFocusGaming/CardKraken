@@ -41,9 +41,15 @@ public class ControlMgr2D : MonoBehaviour
         matches = false;
 
         //on gameboard load - sets the card currently in view to match the one in gameboard
-        if(controlMgr3D.cardPresent){
+        if(!controlMgr3D.manualOpen && controlMgr3D.cardPresent){
             inventoryMgr2D.setCardView(controlMgr3D.cardMgr3D.currCard);
             inventoryMgr2D.cardView.SetActive(true);
+        }
+
+        if(inventoryMgr2D.characterCard){
+            inventoryMgr2D.inventoryObject.SetActive(false);
+        }else{
+            inventoryMgr2D.inventoryObject.SetActive(true);
         }
 
         //controlling companion dialogue for Tutorial Level, based on currCard cardtype
@@ -77,6 +83,12 @@ public class ControlMgr2D : MonoBehaviour
                 }
             }
 
+            if(inventoryMgr2D.characterCard){
+                inventoryMgr2D.cardView.SetActive(false);
+                inventoryMgr2D.inventoryObject.SetActive(true);
+                CharacterMgr.inst.removeDialogue();
+            }
+
             controlMgr3D.inventoryOpen = false;
             SceneManager.UnloadSceneAsync("GameBoard");
         }
@@ -103,18 +115,12 @@ public class ControlMgr2D : MonoBehaviour
             cardUsed = completeEffect;
         }
 
-        // remove companion dialogue upon card use
-        if(cardUsed){
-            CompanionMgr.inst.removeDialogue();
-        }
-
-
         // ====================================
         // Event Completion Controls
         // ====================================
 
         // check for inventory keypresses when event card is active
-        if(inventoryMgr2D.eventCard){
+        if(inventoryMgr2D.eventCard || inventoryMgr2D.bossEventCard){
             if(Input.GetKeyDown(KeyCode.Alpha1)){
                 completeEvent = inventoryMgr2D.completeEventCard(1);
             }else if(Input.GetKeyDown(KeyCode.Alpha2)){
@@ -129,26 +135,6 @@ public class ControlMgr2D : MonoBehaviour
                 completeEvent = inventoryMgr2D.completeEventCard(6);
             }else if(Input.GetKeyDown(KeyCode.Alpha7)){
                 completeEvent = inventoryMgr2D.completeEventCard(7);
-            }
-            cardUsed = completeEvent;
-        }
-
-        // check for inventory keypresses when boss event card is active
-        if(inventoryMgr2D.bossEventCard){
-            if(Input.GetKeyDown(KeyCode.Alpha1)){
-                completeEvent = inventoryMgr2D.completeBossEvent(1);
-            }else if(Input.GetKeyDown(KeyCode.Alpha2)){
-                completeEvent = inventoryMgr2D.completeBossEvent(2);
-            }else if(Input.GetKeyDown(KeyCode.Alpha3)){
-                completeEvent = inventoryMgr2D.completeBossEvent(3);
-            }else if(Input.GetKeyDown(KeyCode.Alpha4)){
-                completeEvent = inventoryMgr2D.completeBossEvent(4);
-            }else if(Input.GetKeyDown(KeyCode.Alpha5)){
-                completeEvent = inventoryMgr2D.completeBossEvent(5);
-            }else if(Input.GetKeyDown(KeyCode.Alpha6)){
-                completeEvent = inventoryMgr2D.completeBossEvent(6);
-            }else if(Input.GetKeyDown(KeyCode.Alpha7)){
-                completeEvent = inventoryMgr2D.completeBossEvent(7);
             }
             cardUsed = completeEvent;
         }
@@ -196,9 +182,22 @@ public class ControlMgr2D : MonoBehaviour
 
         // if event failed: wipe inventory and return to village card world
         if(eventFailed){
-            InventoryMgr3D.inst.wipeInventory();
-            InventoryMgr3D.inst.currLevel = 4;
-            SceneManager.LoadScene("VillageCardWorld");
+            if(!InventoryMgr3D.inst.fungus){
+                InventoryMgr3D.inst.wipeInventory();
+                InventoryMgr3D.inst.currLevel = 4;
+                SceneManager.LoadScene("VillageCardWorld");
+            }else{
+                InventoryMgr3D.inst.useFungusEffect();
+                controlMgr3D.cardMgr3D.currCard.SetActive(false);
+                controlMgr3D.cardPresent = false;
+                controlMgr3D.inventoryOpen = false;
+                SceneManager.UnloadSceneAsync("GameBoard");
+            }   
+        }
+
+        // remove companion dialogue upon card use
+        if(cardUsed || completeEvent){
+            CompanionMgr.inst.removeDialogue();
         }
     }
 }

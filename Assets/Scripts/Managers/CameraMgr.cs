@@ -36,9 +36,15 @@ public class CameraMgr : MonoBehaviour
             }
 
             //very basic camera movement forwards
-            if (!obstacle && Input.GetKeyUp(KeyCode.W))
+            if (!obstacle && Input.GetKeyUp(KeyCode.W)){
                 // feel free to adjust the cameraMoveSpeed variable in Unity editor
                 cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
+                
+                if(InventoryMgr3D.inst.newToVillage){
+                    CompanionMgr.inst.removeDialogue();
+                    InventoryMgr3D.inst.newToVillage = false;
+                }
+            }
         }
     }
 
