@@ -18,6 +18,7 @@ public class InventoryMgr2D : MonoBehaviour
     private InventoryMgr3D inventoryMgr3D;
     private CardMgr3D cardMgr3D;
     private CompanionMgr companionMgr;
+    public AudioMgr AudioMgr;
 
     public List<GameObject> inventoryPanels4;
     public List<GameObject> inventoryPanels5;

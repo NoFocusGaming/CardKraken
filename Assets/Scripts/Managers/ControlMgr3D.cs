@@ -13,6 +13,7 @@ public class ControlMgr3D : MonoBehaviour
     public CameraMgr cameraMgr;
     public CardMgr3D cardMgr3D;
     public InventoryMgr3D inventoryMgr3D;
+    public AudioMgr AudioMgr;
     public GameObject instructions;
 
     public bool pressF = false;
@@ -47,6 +48,7 @@ public class ControlMgr3D : MonoBehaviour
             inventoryOpen = true;
             manualOpen = false;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
+            AudioMgr.PlayCardflip();
         }
 
         // open inventory on keypress 'I'
@@ -54,6 +56,12 @@ public class ControlMgr3D : MonoBehaviour
             inventoryOpen = true;
             manualOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
+            AudioMgr.PlayOpenInv();
+        }
+
+        if (inventoryOpen && Input.GetKeyDown(KeyCode.Q))
+        {
+            AudioMgr.PlayCloseInv();
         }
     }
 

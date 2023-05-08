@@ -8,6 +8,8 @@ public class AudioMgr : MonoBehaviour
     public AudioSource Cardflip;
     public AudioSource Card;
     public AudioSource Combinecard;
+    public AudioSource OpenInv;
+    public AudioSource CloseInv;
 
     // Start is called before the first frame update
     void Start()
@@ -20,22 +22,42 @@ public class AudioMgr : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Footstep.Play();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Cardflip.Play();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            Card.Play();
+            PlayFootStep();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Combinecard.Play();
+            PlayCombinecard();
         }
+    }
+
+    public void PlayFootStep()
+    {
+        Footstep.Play();
+    }
+
+    public void PlayCardflip()
+    {
+        Cardflip.Play();
+    }
+
+    public void PlayCard()
+    {
+        Card.Play();
+    }
+
+    public void PlayCombinecard()
+    {
+        Combinecard.Play();
+    }
+
+    public void PlayOpenInv()
+    {
+        OpenInv.Play();
+    }
+
+    public void PlayCloseInv()
+    {
+        CloseInv.Play();
     }
 }

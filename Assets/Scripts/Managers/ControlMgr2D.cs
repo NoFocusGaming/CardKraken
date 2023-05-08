@@ -14,6 +14,7 @@ public class ControlMgr2D : MonoBehaviour
     private CameraMgr cameraMgr;
     private InventoryMgr2D inventoryMgr2D;
     private CardMgr2D cardMgr2D;
+    public AudioMgr AudioMgr;
 
     public bool cardUsed = false;
     public bool completeEvent = false, completeEffect = false;
@@ -73,12 +74,16 @@ public class ControlMgr2D : MonoBehaviour
     {
         // closing GameBoard scene on press of key 'Q'
         if(!inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.Q)){
-
+            AudioMgr.PlayCloseInv();
             //reactive the card in 3D world if it has not been used
-            if(controlMgr3D.cardPresent){
-                if(!cardUsed){
+            if (controlMgr3D.cardPresent)
+            {
+                if (!cardUsed)
+                {
                     controlMgr3D.cardMgr3D.currCard.SetActive(true);
-                }else{
+                }
+                else
+                {
                     controlMgr3D.cardPresent = false;
                 }
             }
@@ -107,6 +112,7 @@ public class ControlMgr2D : MonoBehaviour
                 inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
                 cardUsed = true;
             }
+            AudioMgr.PlayCard();
         }
 
         // use effect card on key press 'F'
@@ -122,6 +128,7 @@ public class ControlMgr2D : MonoBehaviour
         // check for inventory keypresses when event card is active
         if(inventoryMgr2D.eventCard || inventoryMgr2D.bossEventCard){
             if(Input.GetKeyDown(KeyCode.Alpha1)){
+                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(1);
             }else if(Input.GetKeyDown(KeyCode.Alpha2)){
                 completeEvent = inventoryMgr2D.completeEventCard(2);
