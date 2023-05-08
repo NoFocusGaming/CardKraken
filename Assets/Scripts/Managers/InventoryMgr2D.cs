@@ -39,6 +39,8 @@ public class InventoryMgr2D : MonoBehaviour
 
     public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false, bossEventCard = false;
 
+    public bool itemInInventory = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -262,12 +264,20 @@ public class InventoryMgr2D : MonoBehaviour
     // adding curr card in carview to inventory
     public void addCardToInv(Card currCard)
     {
+
+        foreach(string invTag in InventoryMgr3D.inst.currInvTags){
+            if(invTag.Equals(CardMgr3D.inst.currCard.tag))
+                itemInInventory = true;
+        }
+
         if(inventoryMgr3D.currInvTags.Count < inventoryMgr3D.maxCards){
-            inventoryMgr3D.currInvTags.Add(currCard.card.tag);
-            inventoryMgr3D.currInvSprites.Add(currSprite);
-            inventoryMgr3D.currInvWeapon.Add(currCard.weapon);
+            if(!itemInInventory){
+                inventoryMgr3D.currInvTags.Add(currCard.card.tag);
+                inventoryMgr3D.currInvSprites.Add(currSprite);
+                inventoryMgr3D.currInvWeapon.Add(currCard.weapon);
+                currPanel[(inventoryMgr3D.currInvTags.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
+            }
             cardView.SetActive(false);
-            currPanel[(inventoryMgr3D.currInvTags.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
 
             // for Tutorial Level, set tutorialComplete upon user adding either rock or leaf item to inv
             if(inventoryMgr3D.currLevel == 0){
@@ -285,6 +295,7 @@ public class InventoryMgr2D : MonoBehaviour
                 cardMgr3D.hideOtherItem();
             }
         }
+        itemInInventory = false;
     }
 
     // set companion sprite in tutorial level
@@ -302,7 +313,6 @@ public class InventoryMgr2D : MonoBehaviour
         // when user presses inventory option that doesn't currently have any item
         if(index > inventoryMgr3D.currInvTags.Count){
             Debug.Log("index outside of range of inventory");
-            ControlMgr2D.inst.eventFailed = true;
             return false;
         }
 
@@ -339,6 +349,9 @@ public class InventoryMgr2D : MonoBehaviour
         }else if(cardMgr3D.currCard.CompareTag("Lake")){
             ControlMgr2D.inst.fungus = true;
             complete = true;
+        }else if(cardMgr3D.currCard.CompareTag("Swordstone")){
+            ControlMgr2D.inst.sword = true;
+            complete = true;
         }else if(cardMgr3D.currCard.CompareTag("Cabin")){
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Candle")){
                 ControlMgr2D.inst.spear = true;
@@ -353,6 +366,19 @@ public class InventoryMgr2D : MonoBehaviour
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
                 ControlMgr2D.inst.spear = true;
+                complete = true;
+            }
+        }else if(cardMgr3D.currCard.CompareTag("Cliff")){
+            if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rope")){
+                ControlMgr2D.inst.axe = true;
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Leaf")){
+                ControlMgr2D.inst.axe = true;
+                complete = true;
+            }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Feather")){
+                ControlMgr2D.inst.axe = true;
+                complete = true;
+            }else{
                 complete = true;
             }
         }else if(cardMgr3D.currCard.CompareTag("Well")){

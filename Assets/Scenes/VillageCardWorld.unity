@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34190008, g: 0.45937455, b: 0.5373395, a: 1}
+  m_IndirectSpecularColor: {r: 0.34186018, g: 0.45892945, b: 0.537006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29726,6 +29726,7 @@ MonoBehaviour:
   cardPresent: 0
   inventoryOpen: 0
   levelComplete: 0
+  cardRange: 5
 --- !u!1001 &798861286
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52411,7 +52412,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1343433113
 Transform:
   m_ObjectHideFlags: 0
@@ -52435,7 +52436,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343433112}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 5e7ff0ed456641b489e9ff7c74585de4, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1343433115
@@ -52445,7 +52446,7 @@ Terrain:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1343433112}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 5e7ff0ed456641b489e9ff7c74585de4, type: 2}
   m_TreeDistance: 5000

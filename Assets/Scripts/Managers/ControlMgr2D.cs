@@ -123,6 +123,12 @@ public class ControlMgr2D : MonoBehaviour
                 completeEvent = inventoryMgr2D.completeEventCard(3);
             }else if(Input.GetKeyDown(KeyCode.Alpha4)){
                 completeEvent = inventoryMgr2D.completeEventCard(4);
+            }else if(Input.GetKeyDown(KeyCode.Alpha5)){
+                completeEvent = inventoryMgr2D.completeEventCard(5);
+            }else if(Input.GetKeyDown(KeyCode.Alpha6)){
+                completeEvent = inventoryMgr2D.completeEventCard(6);
+            }else if(Input.GetKeyDown(KeyCode.Alpha7)){
+                completeEvent = inventoryMgr2D.completeEventCard(7);
             }
             cardUsed = completeEvent;
         }
@@ -137,6 +143,12 @@ public class ControlMgr2D : MonoBehaviour
                 completeEvent = inventoryMgr2D.completeBossEvent(3);
             }else if(Input.GetKeyDown(KeyCode.Alpha4)){
                 completeEvent = inventoryMgr2D.completeBossEvent(4);
+            }else if(Input.GetKeyDown(KeyCode.Alpha5)){
+                completeEvent = inventoryMgr2D.completeBossEvent(5);
+            }else if(Input.GetKeyDown(KeyCode.Alpha6)){
+                completeEvent = inventoryMgr2D.completeBossEvent(6);
+            }else if(Input.GetKeyDown(KeyCode.Alpha7)){
+                completeEvent = inventoryMgr2D.completeBossEvent(7);
             }
             cardUsed = completeEvent;
         }
