@@ -20,6 +20,7 @@ public class ControlMgr3D : MonoBehaviour
     public bool inventoryOpen = false, manualOpen = false;
 
     public bool levelComplete = false;
+    public GameObject winText;
 
     public int cardRange;
 
@@ -29,6 +30,7 @@ public class ControlMgr3D : MonoBehaviour
         cameraMgr = CameraMgr.inst;
         cardMgr3D = CardMgr3D.inst;
         inventoryMgr3D = InventoryMgr3D.inst;
+        winText.SetActive(false);
 
         // setting for village level to allow use of portals
         if(inventoryMgr3D.currLevel == 4){
@@ -106,7 +108,20 @@ public class ControlMgr3D : MonoBehaviour
                     inventoryMgr3D.currLevel = 3;
                     SceneManager.LoadScene("BossCardWorld", LoadSceneMode.Single);
                 }
+                // if kraken defeated, return to village, and display win text
+                else if (inventoryMgr3D.bossComplete && inventoryMgr3D.krakenDefeated == true){
+                    inventoryMgr3D.currLevel = 4;
+                    SceneManager.LoadScene("VillageCardWorld", LoadSceneMode.Single);
+                    StartCoroutine(DisplayWinText(winText, 2));
+                }
             }
         }
+    }
+    // display win text object for 2 seconds
+    IEnumerator DisplayWinText(GameObject winText, float delay)
+    {
+        winText.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        winText.SetActive(false);
     }
 }

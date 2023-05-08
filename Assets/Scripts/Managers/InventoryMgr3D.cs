@@ -27,6 +27,7 @@ public class InventoryMgr3D : MonoBehaviour
     public bool newToVillage = true;
 
     public int krakenHealth = 10;
+    public bool krakenDefeated = false;
 
     public bool fungus = false;
 
@@ -42,6 +43,7 @@ public class InventoryMgr3D : MonoBehaviour
         Debug.Log("Attack Kraken with damage: " + damage);
         krakenHealth -= damage;
         if(krakenHealth < 0){
+            krakenDefeated = true;
             Debug.Log("Player Wins!");
         }
     }
