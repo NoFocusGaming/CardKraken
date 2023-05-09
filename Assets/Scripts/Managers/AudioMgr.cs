@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AudioMgr : MonoBehaviour
 {
+    public static AudioMgr inst;
+
+    private void Awake(){
+        inst = this;
+    }
+
     public AudioSource Footstep;
     public AudioSource Cardflip;
     public AudioSource Card;

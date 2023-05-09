@@ -10,10 +10,10 @@ public class ControlMgr3D : MonoBehaviour
         inst = this;
     }
 
-    public CameraMgr cameraMgr;
+    private CameraMgr cameraMgr;
     public CardMgr3D cardMgr3D;
-    public InventoryMgr3D inventoryMgr3D;
-    public AudioMgr AudioMgr;
+    private InventoryMgr3D inventoryMgr3D;
+    private AudioMgr audioMgr;
     public GameObject instructions;
 
     public bool pressF = false;
@@ -21,8 +21,6 @@ public class ControlMgr3D : MonoBehaviour
     public bool inventoryOpen = false, manualOpen = false;
 
     public bool levelComplete = false;
-    public GameObject winText;
-
     public int cardRange;
 
     // Start is called before the first frame update
@@ -31,7 +29,7 @@ public class ControlMgr3D : MonoBehaviour
         cameraMgr = CameraMgr.inst;
         cardMgr3D = CardMgr3D.inst;
         inventoryMgr3D = InventoryMgr3D.inst;
-        winText.SetActive(false);
+        audioMgr = AudioMgr.inst;
 
         // setting for village level to allow use of portals
         if(inventoryMgr3D.currLevel == 4){
@@ -48,7 +46,7 @@ public class ControlMgr3D : MonoBehaviour
             inventoryOpen = true;
             manualOpen = false;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
-            AudioMgr.PlayCardflip();
+            audioMgr.PlayCardflip();
         }
 
         // open inventory on keypress 'I'
@@ -56,12 +54,17 @@ public class ControlMgr3D : MonoBehaviour
             inventoryOpen = true;
             manualOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
-            AudioMgr.PlayOpenInv();
+            audioMgr.PlayOpenInv();
         }
 
         if (inventoryOpen && Input.GetKeyDown(KeyCode.Q))
         {
-            AudioMgr.PlayCloseInv();
+            audioMgr.PlayCloseInv();
+        }
+
+        // if kraken defeated, return to village, and display win text
+        if (inventoryMgr3D.krakenDefeated){
+            SceneManager.LoadScene("WinScreen", LoadSceneMode.Additive);
         }
     }
 
@@ -116,20 +119,7 @@ public class ControlMgr3D : MonoBehaviour
                     inventoryMgr3D.currLevel = 3;
                     SceneManager.LoadScene("BossCardWorld", LoadSceneMode.Single);
                 }
-                // if kraken defeated, return to village, and display win text
-                else if (inventoryMgr3D.bossComplete && inventoryMgr3D.krakenDefeated == true){
-                    inventoryMgr3D.currLevel = 4;
-                    SceneManager.LoadScene("VillageCardWorld", LoadSceneMode.Single);
-                    StartCoroutine(DisplayWinText(winText, 2));
-                }
             }
         }
-    }
-    // display win text object for 2 seconds
-    IEnumerator DisplayWinText(GameObject winText, float delay)
-    {
-        winText.SetActive(true);
-        yield return new WaitForSeconds(delay);
-        winText.SetActive(false);
     }
 }

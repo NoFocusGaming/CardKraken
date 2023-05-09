@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BossCardWorld.unity
     guid: 4159631911e2e094eaf84c0477cc4400
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 74eb7f516a5c16f4d82bc6afdfaeb15c
   m_configObjects: {}

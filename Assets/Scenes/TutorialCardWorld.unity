@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34186015, g: 0.45892945, b: 0.537006, a: 1}
+  m_IndirectSpecularColor: {r: 0.34186018, g: 0.45892945, b: 0.537006, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19272,11 +19272,10 @@ MonoBehaviour:
   tutorialComplete: 0
   levelOneComplete: 0
   levelTwoComplete: 0
-  bossComplete: 0
   newToVillage: 1
   krakenHealth: 10
   krakenDefeated: 0
-  fungus: 1
+  fungus: 0
 --- !u!1 &798515830
 GameObject:
   m_ObjectHideFlags: 0
@@ -52710,17 +52709,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffc2a0f9b2f24da4fb10a69cde693605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraMgr: {fileID: 2107365981}
   cardMgr3D: {fileID: 58811364}
-  inventoryMgr3D: {fileID: 796168610}
-  AudioMgr: {fileID: 1252804450}
   instructions: {fileID: 481175227}
   pressF: 0
   cardPresent: 0
   inventoryOpen: 0
   manualOpen: 0
   levelComplete: 0
-  winText: {fileID: 0}
   cardRange: 5
 --- !u!1001 &2145609217
 PrefabInstance:

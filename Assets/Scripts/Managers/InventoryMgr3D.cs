@@ -22,7 +22,7 @@ public class InventoryMgr3D : MonoBehaviour
     public Sprite currCompanion, BLANK;
 
     public int currLevel; //0 = tutorial, 1 = level 1, 2 = level 2, 3 = boss level, 4 = village
-    public bool tutorialComplete = false, levelOneComplete = false, levelTwoComplete = false, bossComplete = false;
+    public bool tutorialComplete = false, levelOneComplete = false, levelTwoComplete = false;
 
     public bool newToVillage = true;
 
@@ -44,7 +44,6 @@ public class InventoryMgr3D : MonoBehaviour
         krakenHealth -= damage;
         if(krakenHealth < 0){
             krakenDefeated = true;
-            Debug.Log("Player Wins!");
         }
     }
 
