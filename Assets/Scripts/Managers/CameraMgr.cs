@@ -26,23 +26,25 @@ public class CameraMgr : MonoBehaviour
     {
         if (!ControlMgr3D.inst.inventoryOpen && !PauseMenu.isPaused)
         {
-            //rotating 90 degrees at key press
             if (!turning)
             {
+                //rotating 90 degrees at key press
                 if (Input.GetKeyUp(KeyCode.A))
                     StartCoroutine(turn(Vector3.down));
                 if (Input.GetKeyUp(KeyCode.D))
                     StartCoroutine(turn(Vector3.up));
-            }
 
-            //very basic camera movement forwards
-            if (!obstacle && Input.GetKeyUp(KeyCode.W)){
-                // feel free to adjust the cameraMoveSpeed variable in Unity editor
-                cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
-                
-                if(InventoryMgr3D.inst.newToVillage){
-                    CompanionMgr.inst.removeDialogue();
-                    InventoryMgr3D.inst.newToVillage = false;
+                //very basic camera movement forwards
+                if (!obstacle && Input.GetKeyUp(KeyCode.W))
+                {
+                    // feel free to adjust the cameraMoveSpeed variable in Unity editor (has to be adjusted in all levels)
+                    cameraObj.transform.Translate(Vector3.forward * cameraMoveSpeed);
+
+                    if (InventoryMgr3D.inst.newToVillage)
+                    {
+                        CompanionMgr.inst.removeDialogue();
+                        InventoryMgr3D.inst.newToVillage = false;
+                    }
                 }
             }
         }

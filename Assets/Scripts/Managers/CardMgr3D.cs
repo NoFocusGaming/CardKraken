@@ -27,7 +27,6 @@ public class CardMgr3D : MonoBehaviour
     public GameObject stick0, stick1, leaf, rock;
     public GameObject campfire0, campfire1;
 
-    // Start is called before the first frame update
     void Start()
     {
         //Loading Cards randomly in gameplay for levels 1 + 2

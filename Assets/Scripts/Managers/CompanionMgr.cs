@@ -12,11 +12,11 @@ public class CompanionMgr : MonoBehaviour
     }
 
     public GameObject companion;
+    public GameObject area; // secondary image used to make drag n drop more accurate
     public List<GameObject> dialogue;
 
     public InventoryMgr3D inventoryMgr;
 
-    // Start is called before the first frame update
     void Start()
     {
         inventoryMgr = InventoryMgr3D.inst;
@@ -29,7 +29,6 @@ public class CompanionMgr : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
     }

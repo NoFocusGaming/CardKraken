@@ -23,7 +23,6 @@ public class ControlMgr3D : MonoBehaviour
     public bool levelComplete = false;
     public int cardRange;
 
-    // Start is called before the first frame update
     void Start()
     {
         cameraMgr = CameraMgr.inst;
@@ -37,7 +36,6 @@ public class ControlMgr3D : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         // loading gameboard scene when card is in front of player + they press 'f' key
@@ -49,7 +47,7 @@ public class ControlMgr3D : MonoBehaviour
             audioMgr.PlayCardflip();
         }
 
-        // open inventory on keypress 'I'
+        // open inventory on keypress 'Q'
         if(!inventoryOpen && Input.GetKeyDown(KeyCode.Q)){
             inventoryOpen = true;
             manualOpen = true;

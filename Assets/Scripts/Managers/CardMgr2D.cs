@@ -13,18 +13,6 @@ public class CardMgr2D : MonoBehaviour
         inst = this;
     }
 
-
     public List<GameObject> allCardsObjects;
     public List<Card> allCards;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

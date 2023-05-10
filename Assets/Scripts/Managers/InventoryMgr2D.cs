@@ -12,7 +12,7 @@ public class InventoryMgr2D : MonoBehaviour
     }
 
     public GameObject cardView;
-
+    
     public GameObject inventoryObject;
 
     private InventoryMgr3D inventoryMgr3D;
@@ -47,7 +47,6 @@ public class InventoryMgr2D : MonoBehaviour
     public bool itemInInventory = false;
     public bool venomEffect = false, improvedTechniqueEffect = false, fungusEffect = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         inventoryMgr3D = InventoryMgr3D.inst;
@@ -58,7 +57,6 @@ public class InventoryMgr2D : MonoBehaviour
         rInstruct.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(companionCard){

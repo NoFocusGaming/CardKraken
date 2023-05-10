@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 public class CardView : MonoBehaviour
 {
     private InventoryMgr2D inventoryMgr;
-
-    // Start is called before the first frame update
     void Start()
     {
         inventoryMgr = InventoryMgr2D.inst;
@@ -19,7 +17,6 @@ public class CardView : MonoBehaviour
 
     private Vector3 offset;
 
-    // Update is called once per frame
     void Update()
     {
         // handling companion card drag and drop movement
@@ -66,7 +63,9 @@ public class CardView : MonoBehaviour
 
     void FixedUpdate(){
         // when cardView overlaps with companion slot, set companion sprite
-        if(mouseSelect && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.companion.GetComponent<RectTransform>()))
+        if (mouseSelect && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.area.GetComponent<RectTransform>())) {
             inventoryMgr.setCompanionSprite();
+            CompanionMgr.inst.area.SetActive(false);
+        }
     }
 }

@@ -23,7 +23,6 @@ public class ControlMgr2D : MonoBehaviour
     public bool snack = false, technique = false, fungus = false, venom = false;
     public bool axe = false, matches = false, spear = false, sword = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         controlMgr3D = ControlMgr3D.inst;
@@ -69,7 +68,6 @@ public class ControlMgr2D : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         // closing GameBoard scene on press of key 'Q'
@@ -105,9 +103,9 @@ public class ControlMgr2D : MonoBehaviour
             SceneManager.LoadScene("VillageCardWorld");
         }
 
-        // adding item or effect card to inventory at keypress E
+        // adding item or effect card to inventory at keypress F
         // does not work on "TastySnack" effect
-        if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.E)){
+        if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.F)){
             if(!controlMgr3D.cardMgr3D.currCard.CompareTag("TastySnack")){
                 inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
                 cardUsed = true;

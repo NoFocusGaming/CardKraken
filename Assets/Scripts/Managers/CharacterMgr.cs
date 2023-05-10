@@ -19,7 +19,6 @@ public class CharacterMgr : MonoBehaviour
     public int currDialogueIndex = 0;
     public bool dialogueDone = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         inventoryMgr = InventoryMgr2D.inst;
@@ -37,7 +36,6 @@ public class CharacterMgr : MonoBehaviour
             currDialogueSet[currDialogueIndex].SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(currDialogueIndex == currDialogueSet.Count - 1)
@@ -46,7 +44,7 @@ public class CharacterMgr : MonoBehaviour
             dialogueDone = false;
 
         if(inventoryMgr.characterCard){
-            if(!dialogueDone && Input.GetKeyDown(KeyCode.Space)){
+            if(!dialogueDone && Input.GetKeyDown(KeyCode.F)){
                 currDialogueSet[currDialogueIndex++].SetActive(false);
                 currDialogueSet[currDialogueIndex].SetActive(true);
             }

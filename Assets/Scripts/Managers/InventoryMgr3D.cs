@@ -42,7 +42,7 @@ public class InventoryMgr3D : MonoBehaviour
     public void AttackKraken(int damage){
         Debug.Log("Attack Kraken with damage: " + damage);
         krakenHealth -= damage;
-        if(krakenHealth < 0){
+        if(krakenHealth <= 0){
             krakenDefeated = true;
         }
     }
