@@ -115,8 +115,8 @@ public class ControlMgr2D : MonoBehaviour
             AudioMgr.PlayCard();
         }
 
-        // use effect card on key press 'F'
-        if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.F)){
+        // use effect card on key press 'E'
+        if(inventoryMgr2D.effectCard && Input.GetKeyDown(KeyCode.E)){
             completeEffect = inventoryMgr2D.completeEffectCard();
             cardUsed = completeEffect;
         }

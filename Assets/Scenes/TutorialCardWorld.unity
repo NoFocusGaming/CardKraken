@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.34186018, g: 0.45892945, b: 0.537006, a: 1}
+  m_IndirectSpecularColor: {r: 0.34190008, g: 0.45937455, b: 0.5373395, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -49629,7 +49629,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Green cards are effects! \nMost effects can be stored like items, but
-    this one is permanent, so press f to use it.\n"
+    this one is permanent, so press e to use it.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8684383cf74768541be390e48477f7e6, type: 2}
   m_sharedMaterial: {fileID: 6668921611353637352, guid: 8684383cf74768541be390e48477f7e6,

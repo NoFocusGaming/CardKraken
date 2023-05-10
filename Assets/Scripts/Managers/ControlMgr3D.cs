@@ -50,7 +50,7 @@ public class ControlMgr3D : MonoBehaviour
         }
 
         // open inventory on keypress 'I'
-        if(!inventoryOpen && Input.GetKeyDown(KeyCode.I)){
+        if(!inventoryOpen && Input.GetKeyDown(KeyCode.Q)){
             inventoryOpen = true;
             manualOpen = true;
             SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
