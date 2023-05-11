@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ControlMgr3D : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class ControlMgr3D : MonoBehaviour
     private CameraMgr cameraMgr;
     public CardMgr3D cardMgr3D;
     private InventoryMgr3D inventoryMgr3D;
+    private SceneMgr sceneMgr;
     private AudioMgr audioMgr;
     public GameObject instructions;
 
@@ -29,6 +29,7 @@ public class ControlMgr3D : MonoBehaviour
         cardMgr3D = CardMgr3D.inst;
         inventoryMgr3D = InventoryMgr3D.inst;
         audioMgr = AudioMgr.inst;
+        sceneMgr = SceneMgr.inst;
 
         // setting for village level to allow use of portals
         if(inventoryMgr3D.currLevel == 4){
@@ -43,7 +44,7 @@ public class ControlMgr3D : MonoBehaviour
             cardMgr3D.currCard.SetActive(false);
             inventoryOpen = true;
             manualOpen = false;
-            SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
+            sceneMgr.OpenInventory();
             audioMgr.PlayCardflip();
         }
 
@@ -51,18 +52,13 @@ public class ControlMgr3D : MonoBehaviour
         if(!inventoryOpen && Input.GetKeyDown(KeyCode.Q)){
             inventoryOpen = true;
             manualOpen = true;
-            SceneManager.LoadScene("GameBoard", LoadSceneMode.Additive);
+            sceneMgr.OpenInventory();
             audioMgr.PlayOpenInv();
         }
 
         if (inventoryOpen && Input.GetKeyDown(KeyCode.Q))
         {
             audioMgr.PlayCloseInv();
-        }
-
-        // if kraken defeated, return to village, and display win text
-        if (inventoryMgr3D.krakenDefeated){
-            SceneManager.LoadScene("WinScreen", LoadSceneMode.Additive);
         }
     }
 
@@ -106,16 +102,16 @@ public class ControlMgr3D : MonoBehaviour
 
                 if(hit.collider.gameObject.CompareTag("LoadZoneVillage")){
                     inventoryMgr3D.currLevel = 4;
-                    SceneManager.LoadScene("VillageCardWorld", LoadSceneMode.Single);
+                    sceneMgr.LoadScene();
                 }else if(hit.collider.gameObject.CompareTag("LoadZoneLvl1")){
                     inventoryMgr3D.currLevel = 1;
-                    SceneManager.LoadScene("Level1CardWorld", LoadSceneMode.Single);
+                    sceneMgr.LoadScene();
                 }else if(inventoryMgr3D.levelOneComplete && hit.collider.gameObject.CompareTag("LoadZoneLvl2")){
                     inventoryMgr3D.currLevel = 2;
-                    SceneManager.LoadScene("Level2CardWorld", LoadSceneMode.Single);
+                    sceneMgr.LoadScene();
                 }else if(inventoryMgr3D.levelTwoComplete && hit.collider.gameObject.CompareTag("LoadZoneBoss")){
                     inventoryMgr3D.currLevel = 3;
-                    SceneManager.LoadScene("BossCardWorld", LoadSceneMode.Single);
+                    sceneMgr.LoadScene();
                 }
             }
         }
