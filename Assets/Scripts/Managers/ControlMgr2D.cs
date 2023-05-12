@@ -98,7 +98,7 @@ public class ControlMgr2D : MonoBehaviour
 
         // control for retreating to village at 'R' keypress 
         // only event cards, not available in tutorial level
-        if((InventoryMgr3D.inst.currLevel != 0) && inventoryMgr2D.eventCard && Input.GetKeyDown(KeyCode.R)){
+        if((InventoryMgr3D.inst.currLevel != 0) && (inventoryMgr2D.eventCard || inventoryMgr2D.bossEventCard) && Input.GetKeyDown(KeyCode.R)){
             InventoryMgr3D.inst.currLevel = 4;
             SceneManager.LoadScene("VillageCardWorld");
         }
@@ -108,7 +108,6 @@ public class ControlMgr2D : MonoBehaviour
         if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.F)){
             if(!controlMgr3D.cardMgr3D.currCard.CompareTag("TastySnack")){
                 inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
-                cardUsed = true;
             }
             AudioMgr.PlayCard();
         }

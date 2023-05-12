@@ -9028,6 +9028,8 @@ MonoBehaviour:
   - {fileID: 980621719}
   currDialogueIndex: 0
   dialogueDone: 1
+  grannyCookie: 0
+  COOKIE: {fileID: 21300000, guid: e8c957616cc754444a694059c126d398, type: 3}
 --- !u!1 &1840728487
 GameObject:
   m_ObjectHideFlags: 0

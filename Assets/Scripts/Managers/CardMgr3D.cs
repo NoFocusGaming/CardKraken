@@ -26,6 +26,7 @@ public class CardMgr3D : MonoBehaviour
     public GameObject tastySnack, tastySnack1;
     public GameObject stick0, stick1, leaf, rock;
     public GameObject campfire0, campfire1;
+    public Card cookie;
 
     void Start()
     {

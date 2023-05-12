@@ -15,24 +15,27 @@ public class CharacterMgr : MonoBehaviour
     public List<GameObject> lover1Dialogue;
     public List<GameObject> lover2Dialogue;
 
-    private InventoryMgr2D inventoryMgr;
+    private InventoryMgr2D inventoryMgr2D;
+    private InventoryMgr3D inventoryMgr3D;
     public int currDialogueIndex = 0;
-    public bool dialogueDone = true;
+    public bool dialogueDone = true, grannyCookie = false;
+    public Sprite COOKIE;
 
     void Start()
     {
-        inventoryMgr = InventoryMgr2D.inst;
+        inventoryMgr2D = InventoryMgr2D.inst;
+        inventoryMgr3D = InventoryMgr3D.inst;
 
-        if(inventoryMgr.granny)
+        if(inventoryMgr2D.granny)
             currDialogueSet = grannyDialogue;
-        else if(inventoryMgr.fool)
+        else if(inventoryMgr2D.fool)
             currDialogueSet = foolDialogue;
-        else if(inventoryMgr.lover1)
+        else if(inventoryMgr2D.lover1)
             currDialogueSet = lover1Dialogue;
-        else if(inventoryMgr.lover2)
+        else if(inventoryMgr2D.lover2)
             currDialogueSet = lover2Dialogue;
 
-        if(inventoryMgr.characterCard && currDialogueSet.Count > 0)
+        if(inventoryMgr2D.characterCard && currDialogueSet.Count > 0)
             currDialogueSet[currDialogueIndex].SetActive(true);
     }
 
@@ -43,10 +46,21 @@ public class CharacterMgr : MonoBehaviour
         else
             dialogueDone = false;
 
-        if(inventoryMgr.characterCard){
+        if(inventoryMgr2D.characterCard){
             if(!dialogueDone && Input.GetKeyDown(KeyCode.F)){
                 currDialogueSet[currDialogueIndex++].SetActive(false);
                 currDialogueSet[currDialogueIndex].SetActive(true);
+
+                if(inventoryMgr2D.granny && currDialogueIndex == 2){
+                    grannyCookie = true;
+                    if(inventoryMgr3D.currInvTags.Count < inventoryMgr3D.maxCards){
+                        inventoryMgr3D.currInvTags.Add("Cookie");
+                        inventoryMgr3D.currInvSprites.Add(COOKIE);
+                        inventoryMgr3D.currInvWeapon.Add(false);
+                        inventoryMgr2D.currPanel[(inventoryMgr3D.currInvTags.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = COOKIE;
+                        inventoryMgr2D.inventoryObject.SetActive(true);
+                    }
+                }
             }
         }
     }
@@ -55,11 +69,11 @@ public class CharacterMgr : MonoBehaviour
         foreach(GameObject dialogue in currDialogueSet)
             dialogue.SetActive(false);
 
-        InventoryMgr2D.inst.characterCard = false;
-        InventoryMgr2D.inst.granny = false;
-        InventoryMgr2D.inst.fool = false;
-        InventoryMgr2D.inst.lover1 = false;
-        InventoryMgr2D.inst.lover2 = false;
-        InventoryMgr2D.inst.inventoryObject.SetActive(true);
+        inventoryMgr2D.characterCard = false;
+        inventoryMgr2D.granny = false;
+        inventoryMgr2D.fool = false;
+        inventoryMgr2D.lover1 = false;
+        inventoryMgr2D.lover2 = false;
+        inventoryMgr2D.inventoryObject.SetActive(true);
     }
 }

@@ -29,7 +29,6 @@ public class InventoryMgr2D : MonoBehaviour
 
     public List<GameObject> invPanelsParentObjects;
 
-
     public Sprite CAT, BLANK;
     public Sprite STICK, ROCK, LEAF, COOKIE, SHIELD, CANDLE, ROPE, FEATHER, AXE, NEEDLE, ARROWHEAD, DAGGER, MATCHES, SWORD, SPEAR;
     public Sprite CAMPFIRE, SQUIRREL, SNAKE, TREEHOUSE, LAKE, SWORDSTONE, CABIN, CABIN2, CLIFF, WELL, LUMP, PERFECTSTICK;
@@ -291,12 +290,12 @@ public class InventoryMgr2D : MonoBehaviour
     // adding curr card in carview to inventory
     public void addCardToInv(Card currCard)
     {
-        if(CardMgr3D.inst.currCard.tag.Equals("Fungus"))
+        if(currCard.tag.Equals("Fungus"))
             inventoryMgr3D.fungus = true;
 
         foreach(string invTag in InventoryMgr3D.inst.currInvTags){
-            if(invTag.Equals(CardMgr3D.inst.currCard.tag)){
-                if(!invTag.Equals("Axe") && !invTag.Equals("Spear"))
+            if(invTag.Equals(currCard.tag)){
+                if(!invTag.Equals("Axe") && !invTag.Equals("Spear") && !invTag.Equals("Sword"))
                     itemInInventory = true;
             }
         }
@@ -307,8 +306,13 @@ public class InventoryMgr2D : MonoBehaviour
                 inventoryMgr3D.currInvSprites.Add(currSprite);
                 inventoryMgr3D.currInvWeapon.Add(currCard.weapon);
                 currPanel[(inventoryMgr3D.currInvTags.Count - 1)].GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
+            }else{
+                Debug.Log("Item Already in Inventory");
+                cardView.SetActive(false);
+                ControlMgr2D.inst.cardUsed = true;
             }
             cardView.SetActive(false);
+            ControlMgr2D.inst.cardUsed = true;
 
             // for Tutorial Level, set tutorialComplete upon user adding either rock or leaf item to inv
             if(inventoryMgr3D.currLevel == 0){
@@ -325,6 +329,10 @@ public class InventoryMgr2D : MonoBehaviour
                 // for levels 1 + 2, hide corresponding item in opposite path
                 cardMgr3D.hideOtherItem();
             }
+        }else{
+            Debug.Log("Inventory Full");
+            cardView.SetActive(false);
+            ControlMgr2D.inst.cardUsed = true;
         }
         itemInInventory = false;
     }

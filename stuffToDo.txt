@@ -1,0 +1,43 @@
+companion instructs?
+-> make more visible
+-> add more
+	tutorial:
+	-> if they haven't moved in a while, explain movement controls?
+	-> pick one of the two cards ahead
+
+	level1/2:
+	-> first effect card that's not tastySnack
+	-> "pick a path"
+	
+	village:
+	-> first time village entry
+	-> maybe explain how to open inventory (after gma gives cookie???)
+	-> if "died" i.e. event failed, inv empty : tell about rock?
+
+finalize key controls
+	-> more drag and drop?
+	-> viewing cards in inventory
+
+visual stuff:
+-> bigger text for cardView of items/events???
+-> better scene transition visuals/more of them
+-> boss level card kraken visuallssss
+-> lake event card??
+-> "gates" for levels that aren't unlocked yet
+
+Juicing:
+-> effect cards
+-> gma give cookie
+-> cat dialogue
+
+debugging:
+	-> if fill inventory before end of level, stick/campfire thing doesn't work
+	-> card placement issues in levels 1 and 2
+	-> make rotation better?
+	-> Lvl 1 - axe card pops up really close to camera??
+	-> "press f" in village doesn't go away
+
+things i'm unsure about:
+-> village character dialogue???
+-> multiple cookies from gma?
+-> have multiple swords in inv?
