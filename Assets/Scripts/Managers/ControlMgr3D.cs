@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlMgr3D : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class ControlMgr3D : MonoBehaviour
         sceneMgr = SceneMgr.inst;
 
         // setting for village level to allow use of portals
-        if(inventoryMgr3D.currLevel == 4){
+        if(inventoryMgr3D.currLevel == 3 || inventoryMgr3D.tutorialComplete){
             levelComplete = true;
         }
     }
@@ -67,7 +68,7 @@ public class ControlMgr3D : MonoBehaviour
         // when inventory is closed:
         // check for obstacles (walls/cards) in front of player using raycast
         // check for loading zone collider using downward raycast
-        if(!inventoryOpen){
+        if (!inventoryOpen){
             RaycastHit hit;
 
             //detection of card infront of objects
@@ -100,17 +101,22 @@ public class ControlMgr3D : MonoBehaviour
             {
                 Debug.Log("hit collider: " + hit.collider.gameObject);
 
-                if(hit.collider.gameObject.CompareTag("LoadZoneVillage")){
+                if(hit.collider.gameObject.CompareTag("LoadZoneVillage"))
+                {
+                    inventoryMgr3D.currLevel = 3;
+                    sceneMgr.LoadScene();
+                }else if(hit.collider.gameObject.CompareTag("LoadZoneLvl1"))
+                {
                     inventoryMgr3D.currLevel = 4;
                     sceneMgr.LoadScene();
-                }else if(hit.collider.gameObject.CompareTag("LoadZoneLvl1")){
-                    inventoryMgr3D.currLevel = 1;
+                }else if(inventoryMgr3D.levelOneComplete && hit.collider.gameObject.CompareTag("LoadZoneLvl2"))
+                {
+                    inventoryMgr3D.currLevel = 5;
                     sceneMgr.LoadScene();
-                }else if(inventoryMgr3D.levelOneComplete && hit.collider.gameObject.CompareTag("LoadZoneLvl2")){
-                    inventoryMgr3D.currLevel = 2;
-                    sceneMgr.LoadScene();
-                }else if(inventoryMgr3D.levelTwoComplete && hit.collider.gameObject.CompareTag("LoadZoneBoss")){
-                    inventoryMgr3D.currLevel = 3;
+                }
+                else if(inventoryMgr3D.levelTwoComplete && hit.collider.gameObject.CompareTag("LoadZoneBoss"))
+                {
+                    inventoryMgr3D.currLevel = 6;
                     sceneMgr.LoadScene();
                 }
             }
