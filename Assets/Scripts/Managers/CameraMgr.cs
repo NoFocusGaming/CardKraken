@@ -14,7 +14,7 @@ public class CameraMgr : MonoBehaviour
 
     public GameObject cameraObj;
     public float cameraMoveSpeed;
-    public float cameraTurnRate = 100;
+    private float cameraTurnRate = 120;
 
     public Vector3 currentYawEulerAngles = Vector3.zero;
     public Vector3 targetYawEulerAngles = Vector3.zero;

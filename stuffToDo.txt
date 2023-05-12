@@ -22,8 +22,9 @@ visual stuff:
 -> bigger text for cardView of items/events???
 -> better scene transition visuals/more of them
 -> boss level card kraken visuallssss
--> lake event card??
+-> lake event card - get rid of 'leaf card' part
 -> "gates" for levels that aren't unlocked yet
+
 
 Juicing:
 -> effect cards
@@ -33,11 +34,6 @@ Juicing:
 debugging:
 	-> if fill inventory before end of level, stick/campfire thing doesn't work
 	-> card placement issues in levels 1 and 2
-	-> make rotation better?
 	-> Lvl 1 - axe card pops up really close to camera??
 	-> "press f" in village doesn't go away
-
-things i'm unsure about:
--> village character dialogue???
--> multiple cookies from gma?
--> have multiple swords in inv?
+	-> get rid of cookie item in levels

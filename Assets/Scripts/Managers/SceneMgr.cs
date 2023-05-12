@@ -24,15 +24,6 @@ public class SceneMgr : MonoBehaviour
         inventoryMgr3D = InventoryMgr3D.inst;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // if kraken defeated, return to village, and display win text
-        if (inventoryMgr3D.krakenDefeated){
-            SceneManager.LoadScene("WinScreen", LoadSceneMode.Additive);
-        }
-    }
-
     public void LoadScene(){
         int sceneIndex = inventoryMgr3D.currLevel;
         loadingScreen.SetActive(true);

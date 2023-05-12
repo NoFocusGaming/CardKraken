@@ -295,7 +295,7 @@ public class InventoryMgr2D : MonoBehaviour
 
         foreach(string invTag in InventoryMgr3D.inst.currInvTags){
             if(invTag.Equals(currCard.tag)){
-                if(!invTag.Equals("Axe") && !invTag.Equals("Spear") && !invTag.Equals("Sword"))
+                if(!invTag.Equals("Axe") && !invTag.Equals("Spear"))
                     itemInInventory = true;
             }
         }
@@ -319,11 +319,9 @@ public class InventoryMgr2D : MonoBehaviour
                 if(currCard.card.CompareTag("Rock")){
                     CardMgr3D.inst.leaf.SetActive(false);
                     ControlMgr3D.inst.levelComplete = true;
-                    inventoryMgr3D.tutorialComplete = true;
                 }else if(currCard.card.CompareTag("Leaf")){
                     CardMgr3D.inst.rock.SetActive(false);
                     ControlMgr3D.inst.levelComplete = true;
-                    inventoryMgr3D.tutorialComplete = true;
                 }
             }else if(inventoryMgr3D.currLevel == 1 || inventoryMgr3D.currLevel == 2){
                 // for levels 1 + 2, hide corresponding item in opposite path
@@ -458,28 +456,28 @@ public class InventoryMgr2D : MonoBehaviour
         }if(cardMgr3D.currCard.CompareTag("Attack")){
             int attackIncrease = improvedTechniqueEffect ? 1 : 0;
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rock")){
-                inventoryMgr3D.AttackKraken(1 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(1 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Sword")){
-                inventoryMgr3D.AttackKraken(5 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(5 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Axe")){
-                inventoryMgr3D.AttackKraken(4 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(4 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Spear")){
-                inventoryMgr3D.AttackKraken(4 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(4 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Needle")){
-                inventoryMgr3D.AttackKraken(2 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(2 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Arrowhead")){
-                inventoryMgr3D.AttackKraken(3 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(3 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Dagger")){
-                inventoryMgr3D.AttackKraken(3 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(3 + attackIncrease);
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
-                inventoryMgr3D.AttackKraken(2 + attackIncrease);
+                ControlMgr3D.inst.AttackKraken(2 + attackIncrease);
                 complete = true;
             }
         }else if(cardMgr3D.currCard.CompareTag("Slam")){

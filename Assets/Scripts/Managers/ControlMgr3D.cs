@@ -15,6 +15,7 @@ public class ControlMgr3D : MonoBehaviour
     private SceneMgr sceneMgr;
     private AudioMgr audioMgr;
     public GameObject instructions;
+    public GameObject winScreen;
 
     public bool pressF = false;
     public bool cardPresent = false;
@@ -22,6 +23,11 @@ public class ControlMgr3D : MonoBehaviour
 
     public bool levelComplete = false;
     public int cardRange;
+    
+    public Animator bossAnimator;
+    public int krakenHealth = 10;
+
+    public List<GameObject> villagePaths;
 
     void Start()
     {
@@ -30,10 +36,18 @@ public class ControlMgr3D : MonoBehaviour
         inventoryMgr3D = InventoryMgr3D.inst;
         audioMgr = AudioMgr.inst;
         sceneMgr = SceneMgr.inst;
+        manualOpen = false;
+        
+        if(inventoryMgr3D.currLevel == 3){
+            bossAnimator.ResetTrigger("BossDamage");
+        }else if(inventoryMgr3D.currLevel == 4){          
+            if(!inventoryMgr3D.levelOneComplete){
+                villagePaths[1].SetActive(false);
+            }
 
-        // setting for village level to allow use of portals
-        if(inventoryMgr3D.currLevel == 4){
-            levelComplete = true;
+            if(!inventoryMgr3D.levelTwoComplete){
+                villagePaths[2].SetActive(false);
+            }
         }
     }
 
@@ -59,6 +73,11 @@ public class ControlMgr3D : MonoBehaviour
         if (inventoryOpen && Input.GetKeyDown(KeyCode.Q))
         {
             audioMgr.PlayCloseInv();
+        }
+
+        // if kraken defeated, return to village, and display win text
+        if (inventoryMgr3D.krakenDefeated){
+            winScreen.SetActive(true);
         }
     }
 
@@ -119,6 +138,16 @@ public class ControlMgr3D : MonoBehaviour
                     sceneMgr.LoadScene();
                 }
             }
+        }
+    }
+
+    // handling successful weapon use against kraken
+    public void AttackKraken(int damage){
+        Debug.Log("Attack Kraken with damage: " + damage);
+        bossAnimator.SetTrigger("BossDamage");
+        krakenHealth -= damage;
+        if(krakenHealth <= 0){
+            inventoryMgr3D.krakenDefeated = true;
         }
     }
 }
