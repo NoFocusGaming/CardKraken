@@ -26,7 +26,7 @@ public class CardView : MonoBehaviour
             if(inventoryMgr2D.companionCard){
                 startDragAndDrop();
             }else if(inventoryMgr2D.itemCard){
-                startDragAndDrop();
+                //startDragAndDrop();
             }
         }
 

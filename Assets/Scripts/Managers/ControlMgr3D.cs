@@ -48,6 +48,10 @@ public class ControlMgr3D : MonoBehaviour
             if(!inventoryMgr3D.levelTwoComplete){
                 villagePaths[2].SetActive(false);
             }
+        }else if(inventoryMgr3D.currLevel == 1 && inventoryMgr3D.levelOneComplete){
+            levelComplete = true;
+        }else if(inventoryMgr3D.currLevel == 2 && inventoryMgr3D.levelTwoComplete){
+            levelComplete = true;
         }
     }
 

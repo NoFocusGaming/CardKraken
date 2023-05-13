@@ -18563,7 +18563,7 @@ MonoBehaviour:
   currInvTags: []
   maxCards: 4
   currInvSprites: []
-  currInvWeapon: 0100010100
+  currInvWeapon: 
   currCompanion: {fileID: 21300000, guid: d49b8110032594d498a7b4ce1902b73e, type: 3}
   BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   currLevel: 0
@@ -18572,6 +18572,9 @@ MonoBehaviour:
   newToVillage: 1
   krakenDefeated: 0
   fungus: 0
+  venomEffect: 0
+  improvedTechniqueEffect: 0
+  fungusEffect: 0
 --- !u!1 &798515830
 GameObject:
   m_ObjectHideFlags: 0
