@@ -42,11 +42,9 @@ public class InventoryMgr2D : MonoBehaviour
     public GameObject qInstruct, rInstruct;
 
     public bool itemCard = false, companionCard = false, eventCard = false, effectCard = false, bossEventCard = false, characterCard = false;
-    public bool manualEffectCard = false;
     public bool granny = false, fool = false, lover1 = false, lover2 = false;
     public bool itemInInventory = false;
-
-    public int currIndex;
+    public bool venomEffect = false, improvedTechniqueEffect = false, fungusEffect = false;
 
     void Start()
     {
@@ -256,7 +254,6 @@ public class InventoryMgr2D : MonoBehaviour
         }
 
         cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
-        cardView.SetActive(true);
 
         if((eventCard || bossEventCard) && (inventoryMgr3D.currLevel != 0)){
             qInstruct.SetActive(false);
@@ -360,12 +357,16 @@ public class InventoryMgr2D : MonoBehaviour
         }
         
         if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Venom")){
+            venomEffect = true;
             useEffectCard(index);
             return complete;
         }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Fungus")){
+            fungusEffect = true;
+            inventoryMgr3D.fungus = false;
             useEffectCard(index);
             return complete;
         }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "ImprovedTechnique")){
+            improvedTechniqueEffect = true;
             useEffectCard(index);
             return complete;
         }
@@ -411,8 +412,6 @@ public class InventoryMgr2D : MonoBehaviour
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
                 ControlMgr2D.inst.spear = true;
                 complete = true;
-            }else{
-                complete = true;
             }
         }else if(cardMgr3D.currCard.CompareTag("Cabin2")){
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Candle")){
@@ -420,8 +419,6 @@ public class InventoryMgr2D : MonoBehaviour
                 complete = true;
             }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Matches")){
                 ControlMgr2D.inst.spear = true;
-                complete = true;
-            }else{
                 complete = true;
             }
         }else if(cardMgr3D.currCard.CompareTag("Cliff")){
@@ -459,7 +456,7 @@ public class InventoryMgr2D : MonoBehaviour
                 complete = true;
             }
         }if(cardMgr3D.currCard.CompareTag("Attack")){
-            int attackIncrease = inventoryMgr3D.improvedTechniqueEffect ? 1 : 0;
+            int attackIncrease = improvedTechniqueEffect ? 1 : 0;
             if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Rock")){
                 inventoryMgr3D.AttackKraken(1 + attackIncrease);
                 complete = true;
@@ -523,23 +520,23 @@ public class InventoryMgr2D : MonoBehaviour
         cardView.SetActive(!complete);
 
         // if a weapon was used after improved technique, deactivate effect
-        if( inventoryMgr3D.improvedTechniqueEffect && inventoryMgr3D.currInvWeapon[index-1]){
-            inventoryMgr3D.improvedTechniqueEffect = false;
+        if( improvedTechniqueEffect && inventoryMgr3D.currInvWeapon[index-1]){
+            improvedTechniqueEffect = false;
         }
 
         // remove selected item from inventory if venom effect was not just used
-        if(!inventoryMgr3D.venomEffect){
+        if(!venomEffect){
             inventoryMgr3D.currInvSprites.RemoveAt(index-1);
             inventoryMgr3D.currInvTags.RemoveAt(index-1);
             inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
             currPanel[index-1].GetComponent<UnityEngine.UI.Image>().sprite = BLANK;
         }else{
-            inventoryMgr3D.venomEffect = false;
+            venomEffect = false;
         }
 
         // if fungus effect is active, fail current event (regardless of prev stuff)
-        if( inventoryMgr3D.fungusEffect ){
-            inventoryMgr3D.fungusEffect = false;
+        if( fungusEffect ){
+            fungusEffect = false;
             ControlMgr2D.inst.eventFailed = true;
             Debug.Log("Fungus effect caused event fail");
         }else{
@@ -555,23 +552,9 @@ public class InventoryMgr2D : MonoBehaviour
 
     // function to update inventory when effect card at given index is used (called in completeEventCard)
     public void useEffectCard(int index){
-        if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Venom")){
-            inventoryMgr3D.venomEffect = true;
-        }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "Fungus")){
-            inventoryMgr3D.fungusEffect = true;
-            inventoryMgr3D.fungus = false;
-        }else if(String.Equals(inventoryMgr3D.currInvTags[index-1], "ImprovedTechnique")){
-            inventoryMgr3D.improvedTechniqueEffect = true;
-        }
-
         inventoryMgr3D.currInvSprites.RemoveAt(index-1);
         inventoryMgr3D.currInvTags.RemoveAt(index-1);
         inventoryMgr3D.currInvWeapon.RemoveAt(index-1);
-
-        if(ControlMgr3D.inst.manualOpen){
-            manualEffectCard = false;
-            cardView.SetActive(false);
-        }
 
         //load sprites of all cards in curr inventory
         int i = 0;
@@ -586,7 +569,7 @@ public class InventoryMgr2D : MonoBehaviour
             i++;
         }
 
-        if(!ControlMgr3D.inst.manualOpen && inventoryMgr3D.currInvTags.Count == 0){
+        if(inventoryMgr3D.currInvTags.Count == 0){
             ControlMgr2D.inst.eventFailed = true;
         }
     }
@@ -612,22 +595,5 @@ public class InventoryMgr2D : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    public void selectCardsInInventory(int index){
-        if(index > inventoryMgr3D.currInvTags.Count){
-            Debug.Log("index outside of range of inventory");
-            return;
-        }
-        
-        currIndex = index;
-
-        currSprite = inventoryMgr3D.currInvSprites[index - 1];
-        cardView.GetComponent<UnityEngine.UI.Image>().sprite = currSprite;
-        cardView.SetActive(true);
-
-        if(inventoryMgr3D.currInvTags[index - 1].Equals("Venom") || inventoryMgr3D.currInvTags[index - 1].Equals("Fungus") || inventoryMgr3D.currInvTags[index - 1].Equals("ImprovedTechnique")){
-            manualEffectCard = true;
-        }
     }
 }

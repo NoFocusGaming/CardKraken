@@ -30,7 +30,6 @@ public class InventoryMgr3D : MonoBehaviour
     public bool krakenDefeated = false;
 
     public bool fungus = false;
-    public bool venomEffect = false, improvedTechniqueEffect = false, fungusEffect = false;
 
     // function to wipe inventory (called on event failure)
     public void wipeInventory(){

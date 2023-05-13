@@ -18563,8 +18563,12 @@ MonoBehaviour:
   currInvTags: []
   maxCards: 4
   currInvSprites: []
+<<<<<<< HEAD
   currInvWeapon: 
 <<<<<<< HEAD
+=======
+  currInvWeapon: 0100010100
+>>>>>>> parent of 22b17cb (all changes before class)
   currCompanion: {fileID: 21300000, guid: d49b8110032594d498a7b4ce1902b73e, type: 3}
 =======
   currCompanion: {fileID: 21300000, guid: 70b23828dd0374b4eb12a2e788aa4294, type: 3}
@@ -18578,9 +18582,6 @@ MonoBehaviour:
   krakenHealth: 10
   krakenDefeated: 0
   fungus: 0
-  venomEffect: 0
-  improvedTechniqueEffect: 0
-  fungusEffect: 0
 --- !u!1 &798515830
 GameObject:
   m_ObjectHideFlags: 0

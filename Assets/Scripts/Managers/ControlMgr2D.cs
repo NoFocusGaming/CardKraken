@@ -93,7 +93,6 @@ public class ControlMgr2D : MonoBehaviour
             }
 
             controlMgr3D.inventoryOpen = false;
-            controlMgr3D.manualOpen = false;
             SceneManager.UnloadSceneAsync("GameBoard");
         }
 
@@ -106,7 +105,7 @@ public class ControlMgr2D : MonoBehaviour
 
         // adding item or effect card to inventory at keypress F
         // does not work on "TastySnack" effect
-        if(!controlMgr3D.manualOpen && (inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.F)){
+        if((inventoryMgr2D.itemCard || inventoryMgr2D.effectCard) && Input.GetKeyDown(KeyCode.F)){
             if(!controlMgr3D.cardMgr3D.currCard.CompareTag("TastySnack")){
                 inventoryMgr2D.addCardToInv(controlMgr3D.cardMgr3D.currCard.GetComponent<Card>());
             }
@@ -119,29 +118,6 @@ public class ControlMgr2D : MonoBehaviour
             cardUsed = completeEffect;
         }
 
-        if(controlMgr3D.manualOpen){
-            if(Input.GetKeyDown(KeyCode.Alpha1)){
-                inventoryMgr2D.selectCardsInInventory(1);
-            }else if(Input.GetKeyDown(KeyCode.Alpha2)){
-                inventoryMgr2D.selectCardsInInventory(2);
-            }else if(Input.GetKeyDown(KeyCode.Alpha3)){
-                inventoryMgr2D.selectCardsInInventory(3);
-            }else if(Input.GetKeyDown(KeyCode.Alpha4)){
-                inventoryMgr2D.selectCardsInInventory(4);
-            }else if(Input.GetKeyDown(KeyCode.Alpha5)){
-                inventoryMgr2D.selectCardsInInventory(5);
-            }else if(Input.GetKeyDown(KeyCode.Alpha6)){
-                inventoryMgr2D.selectCardsInInventory(6);
-            }else if(Input.GetKeyDown(KeyCode.Alpha7)){
-                inventoryMgr2D.selectCardsInInventory(7);
-            }
-
-            if(inventoryMgr2D.cardView.activeSelf && inventoryMgr2D.manualEffectCard && Input.GetKeyDown(KeyCode.F)){
-                AudioMgr.PlayCard();
-                inventoryMgr2D.useEffectCard(inventoryMgr2D.currIndex);
-            }
-        }
-
         // ====================================
         // Event Completion Controls
         // ====================================
@@ -152,22 +128,16 @@ public class ControlMgr2D : MonoBehaviour
                 AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(1);
             }else if(Input.GetKeyDown(KeyCode.Alpha2)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(2);
             }else if(Input.GetKeyDown(KeyCode.Alpha3)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(3);
             }else if(Input.GetKeyDown(KeyCode.Alpha4)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(4);
             }else if(Input.GetKeyDown(KeyCode.Alpha5)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(5);
             }else if(Input.GetKeyDown(KeyCode.Alpha6)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(6);
             }else if(Input.GetKeyDown(KeyCode.Alpha7)){
-                AudioMgr.PlayCombinecard();
                 completeEvent = inventoryMgr2D.completeEventCard(7);
             }
             cardUsed = completeEvent;
@@ -178,7 +148,7 @@ public class ControlMgr2D : MonoBehaviour
             if(snack){
                 controlMgr3D.cardMgr3D.tastySnack.SetActive(true);
                 
-                if(InventoryMgr3D.inst.currLevel == 1 || InventoryMgr3D.inst.currLevel == 2)
+                if(InventoryMgr3D.inst.currLevel == 1)
                     controlMgr3D.cardMgr3D.tastySnack1.SetActive(true);
             }
 
@@ -225,7 +195,6 @@ public class ControlMgr2D : MonoBehaviour
                 controlMgr3D.cardMgr3D.currCard.SetActive(false);
                 controlMgr3D.cardPresent = false;
                 controlMgr3D.inventoryOpen = false;
-                controlMgr3D.manualOpen = false;
                 SceneManager.UnloadSceneAsync("GameBoard");
             }   
         }

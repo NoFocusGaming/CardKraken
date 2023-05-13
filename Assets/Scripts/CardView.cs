@@ -26,11 +26,15 @@ public class CardView : MonoBehaviour
                 startDragAndDrop();
 <<<<<<< HEAD
             }else if(inventoryMgr2D.itemCard){
+<<<<<<< HEAD
                 //startDragAndDrop();
 =======
             }else if(inventoryMgr.itemCard){
                 startDragAndDrop();
 >>>>>>> parent of 358aa00 (Animating Boss Kraken (Idle and Damage))
+=======
+                startDragAndDrop();
+>>>>>>> parent of 22b17cb (all changes before class)
             }
         }
 

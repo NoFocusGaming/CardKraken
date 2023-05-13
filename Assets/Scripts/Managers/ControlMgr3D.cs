@@ -35,6 +35,7 @@ public class ControlMgr3D : MonoBehaviour
             if(!inventoryMgr3D.levelTwoComplete){
                 villagePaths[2].SetActive(false);
             }
+<<<<<<< HEAD
         }else if(inventoryMgr3D.currLevel == 1 && inventoryMgr3D.levelOneComplete){
             levelComplete = true;
         }else if(inventoryMgr3D.currLevel == 2 && inventoryMgr3D.levelTwoComplete){
@@ -43,6 +44,8 @@ public class ControlMgr3D : MonoBehaviour
         if(inventoryMgr3D.currLevel == 4){
 >>>>>>> parent of 358aa00 (Animating Boss Kraken (Idle and Damage))
             levelComplete = true;
+=======
+>>>>>>> parent of 22b17cb (all changes before class)
         }
     }
 
