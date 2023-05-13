@@ -18,7 +18,6 @@ public class SceneMgr : MonoBehaviour
     public GameObject loadingScreen;
     public TextMeshProUGUI loadingScreenText;
 
-    // Start is called before the first frame update
     void Start()
     {
         inventoryMgr3D = InventoryMgr3D.inst;
@@ -56,10 +55,18 @@ public class SceneMgr : MonoBehaviour
             if (asyncLoad.progress >= 0.9f)
             {
                 asyncLoad.allowSceneActivation = true;
-                currLoading = false;
             }
+            CameraMgr.inst.busy = !asyncLoad.isDone;
             yield return null;
         }
+
+        OpenInventory();
+        SceneManager.UnloadSceneAsync("GameBoard");
+        asyncLoad.allowSceneActivation = true;
+
+        CameraMgr.inst.busy = !asyncLoad.isDone;
+        currLoading = false;
+        yield return null;
     }
 
     public void OpenInventory(){
