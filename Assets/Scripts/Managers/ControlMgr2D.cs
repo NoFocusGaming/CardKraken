@@ -40,8 +40,6 @@ public class ControlMgr2D : MonoBehaviour
         sword = false;
         matches = false;
 
-        controlMgr3D.instructions.SetActive(false);
-
         //on gameboard load - sets the card currently in view to match the one in gameboard
         if(!controlMgr3D.manualOpen && controlMgr3D.cardPresent){
             inventoryMgr2D.setCardView(controlMgr3D.cardMgr3D.currCard);

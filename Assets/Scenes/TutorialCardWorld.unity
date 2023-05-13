@@ -18564,12 +18564,18 @@ MonoBehaviour:
   maxCards: 4
   currInvSprites: []
   currInvWeapon: 
+<<<<<<< HEAD
   currCompanion: {fileID: 21300000, guid: d49b8110032594d498a7b4ce1902b73e, type: 3}
+=======
+  currCompanion: {fileID: 21300000, guid: 70b23828dd0374b4eb12a2e788aa4294, type: 3}
+>>>>>>> parent of 358aa00 (Animating Boss Kraken (Idle and Damage))
   BLANK: {fileID: 21300000, guid: 4d560a3e5c9cd594589901c8e7f9a31f, type: 3}
   currLevel: 0
+  tutorialComplete: 0
   levelOneComplete: 0
   levelTwoComplete: 0
   newToVillage: 1
+  krakenHealth: 10
   krakenDefeated: 0
   fungus: 0
   venomEffect: 0
@@ -48898,6 +48904,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraObj: {fileID: 1211953548}
   cameraMoveSpeed: 2.5
+  cameraTurnRate: 100
   currentYawEulerAngles: {x: 0, y: 0, z: 0}
   targetYawEulerAngles: {x: 0, y: 0, z: 0}
   obstacle: 0
@@ -50120,16 +50127,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardMgr3D: {fileID: 58811364}
   instructions: {fileID: 481175227}
-  winScreen: {fileID: 0}
   pressF: 0
   cardPresent: 0
   inventoryOpen: 0
   manualOpen: 0
   levelComplete: 0
   cardRange: 5
-  bossAnimator: {fileID: 0}
-  krakenHealth: 10
-  villagePaths: []
 --- !u!1001 &2145609217
 PrefabInstance:
   m_ObjectHideFlags: 0

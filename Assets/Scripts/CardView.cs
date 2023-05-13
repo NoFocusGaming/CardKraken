@@ -6,27 +6,31 @@ using UnityEngine.EventSystems;
 
 public class CardView : MonoBehaviour
 {
-    private InventoryMgr2D inventoryMgr2D;
+    private InventoryMgr2D inventoryMgr;
     void Start()
     {
-        inventoryMgr2D = InventoryMgr2D.inst;
+        inventoryMgr = InventoryMgr2D.inst;
     }
 
     public GameObject selectedCard;
     public bool mouseSelect;
 
     private Vector3 offset;
-    private int currInvSlot = 0;
 
     void Update()
     {
         // handling drag and drop movement
         if(Input.GetMouseButtonDown(0))
         {
-            if(inventoryMgr2D.companionCard){
+            if(inventoryMgr.companionCard){
                 startDragAndDrop();
+<<<<<<< HEAD
             }else if(inventoryMgr2D.itemCard){
                 //startDragAndDrop();
+=======
+            }else if(inventoryMgr.itemCard){
+                startDragAndDrop();
+>>>>>>> parent of 358aa00 (Animating Boss Kraken (Idle and Damage))
             }
         }
 
@@ -46,14 +50,12 @@ public class CardView : MonoBehaviour
 
     void FixedUpdate(){
         if(mouseSelect){
-            //currInvSlot = inventoryMgr2D.currInvTags.Count != 0 ? inventoryMgr2D.currInvTags.Count : inventoryMgr2D.currInvTags.Count - 
-
             // when cardView overlaps with companion slot, set companion sprite
-            if (inventoryMgr2D.companionCard && Utils.cardsOverlap(inventoryMgr2D.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.area.GetComponent<RectTransform>())) {
-                inventoryMgr2D.setCompanionSprite();
+            if (inventoryMgr.companionCard && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), CompanionMgr.inst.area.GetComponent<RectTransform>())) {
+                inventoryMgr.setCompanionSprite();
                 CompanionMgr.inst.area.SetActive(false);
-            }else if (inventoryMgr2D.itemCard && Utils.cardsOverlap(inventoryMgr2D.cardView.GetComponent<RectTransform>(), InventoryMgr2D.inst.currPanel[InventoryMgr3D.inst.currInvTags.Count].GetComponent<RectTransform>())) {
-                inventoryMgr2D.addCardToInv(CardMgr3D.inst.currCard.GetComponent<Card>());
+            }else if (inventoryMgr.itemCard && Utils.cardsOverlap(inventoryMgr.cardView.GetComponent<RectTransform>(), InventoryMgr2D.inst.currPanel[InventoryMgr3D.inst.currInvTags.Count].GetComponent<RectTransform>())) {
+                inventoryMgr.addCardToInv(CardMgr3D.inst.currCard.GetComponent<Card>());
             }
         }
     }
